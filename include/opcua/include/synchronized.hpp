@@ -6,8 +6,8 @@
  *    All rights reserved.
  */
 
-#ifndef FORTISS_COMMON_SYNCHRONIZED_HPP
-#define FORTISS_COMMON_SYNCHRONIZED_HPP
+#ifndef OPCUA_SYNCHRONIZED_HPP
+#define OPCUA_SYNCHRONIZED_HPP
 
 #include <memory>
 #include <mutex>

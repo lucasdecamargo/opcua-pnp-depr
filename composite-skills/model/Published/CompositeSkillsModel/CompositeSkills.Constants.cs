@@ -388,9 +388,9 @@ namespace CompositeSkills
         public const uint RTMarkerDetectionSkillType_ParameterSet_CameraSkillControllerEndpoints = 15070;
 
         /// <summary>
-        /// The identifier for the RTMarkerDetectionSkillType_ParameterSet_ArucoSkillEndpoint Variable.
+        /// The identifier for the RTMarkerDetectionSkillType_ParameterSet_ImageProcessorEndpoint Variable.
         /// </summary>
-        public const uint RTMarkerDetectionSkillType_ParameterSet_ArucoSkillEndpoint = 15071;
+        public const uint RTMarkerDetectionSkillType_ParameterSet_ImageProcessorEndpoint = 15254;
 
         /// <summary>
         /// The identifier for the CompositeSkillsType_Lock_Locked Variable.
@@ -738,9 +738,9 @@ namespace CompositeSkills
         public const uint CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_CameraSkillControllerEndpoints = 15252;
 
         /// <summary>
-        /// The identifier for the CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ArucoSkillEndpoint Variable.
+        /// The identifier for the CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ImageProcessorEndpoint Variable.
         /// </summary>
-        public const uint CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ArucoSkillEndpoint = 15253;
+        public const uint CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ImageProcessorEndpoint = 15255;
     }
     #endregion
 
@@ -1093,9 +1093,9 @@ namespace CompositeSkills
         public static readonly ExpandedNodeId RTMarkerDetectionSkillType_ParameterSet_CameraSkillControllerEndpoints = new ExpandedNodeId(CompositeSkills.Variables.RTMarkerDetectionSkillType_ParameterSet_CameraSkillControllerEndpoints, CompositeSkills.Namespaces.CompositeSkills);
 
         /// <summary>
-        /// The identifier for the RTMarkerDetectionSkillType_ParameterSet_ArucoSkillEndpoint Variable.
+        /// The identifier for the RTMarkerDetectionSkillType_ParameterSet_ImageProcessorEndpoint Variable.
         /// </summary>
-        public static readonly ExpandedNodeId RTMarkerDetectionSkillType_ParameterSet_ArucoSkillEndpoint = new ExpandedNodeId(CompositeSkills.Variables.RTMarkerDetectionSkillType_ParameterSet_ArucoSkillEndpoint, CompositeSkills.Namespaces.CompositeSkills);
+        public static readonly ExpandedNodeId RTMarkerDetectionSkillType_ParameterSet_ImageProcessorEndpoint = new ExpandedNodeId(CompositeSkills.Variables.RTMarkerDetectionSkillType_ParameterSet_ImageProcessorEndpoint, CompositeSkills.Namespaces.CompositeSkills);
 
         /// <summary>
         /// The identifier for the CompositeSkillsType_Lock_Locked Variable.
@@ -1443,9 +1443,9 @@ namespace CompositeSkills
         public static readonly ExpandedNodeId CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_CameraSkillControllerEndpoints = new ExpandedNodeId(CompositeSkills.Variables.CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_CameraSkillControllerEndpoints, CompositeSkills.Namespaces.CompositeSkills);
 
         /// <summary>
-        /// The identifier for the CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ArucoSkillEndpoint Variable.
+        /// The identifier for the CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ImageProcessorEndpoint Variable.
         /// </summary>
-        public static readonly ExpandedNodeId CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ArucoSkillEndpoint = new ExpandedNodeId(CompositeSkills.Variables.CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ArucoSkillEndpoint, CompositeSkills.Namespaces.CompositeSkills);
+        public static readonly ExpandedNodeId CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ImageProcessorEndpoint = new ExpandedNodeId(CompositeSkills.Variables.CompositeSkills_Skills_RTMarkerDetectionSkill_ParameterSet_ImageProcessorEndpoint, CompositeSkills.Namespaces.CompositeSkills);
     }
     #endregion
 

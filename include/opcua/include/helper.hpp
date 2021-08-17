@@ -49,9 +49,9 @@
 // #include <fortiss_device_nodeids.h>
 
 #define NAMESPACE_URI_DI "http://opcfoundation.org/UA/DI/"
-#define NAMESPACE_URI_ROB "http://opcfoundation.org/UA/Robotics/"
+// #define NAMESPACE_URI_ROB "http://opcfoundation.org/UA/Robotics/"
 #define NAMESPACE_URI_FOR_DI "https://fortiss.org/UA/Device/"
-#define NAMESPACE_URI_FOR_ROB "https://fortiss.org/UA/Robotics/"
+// #define NAMESPACE_URI_FOR_ROB "https://fortiss.org/UA/Robotics/"
 
 
 #ifndef RAD_TO_DEG

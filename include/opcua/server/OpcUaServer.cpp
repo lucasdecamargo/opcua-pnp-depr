@@ -176,6 +176,7 @@ void OpcUaServer::onServerAnnounce(
 
     if (expectedLdsUri != "disabled" && strncmp((char*) serverOnNetwork->serverName.data, expectedLdsUri.c_str(),
                                                 std::min(serverOnNetwork->serverName.length, expectedLdsUri.size())) == 0) {
+        logger->info("OpcUaServer::onServerAnnounce");
         if (!isServerAnnounce && periodicCallbackId != 0) {
             logger->info("LDS Server {} shut down. Removing periodic register.", expectedLdsUri);
             // delete and stop periodic register
@@ -256,6 +257,7 @@ void OpcUaServer::onServerAnnounce(
             throw std::runtime_error("Server is already registering!");
         }
 
+        logger->info("[OpcUaServer] Setting Perioric Register");
         pnp::opcua::UA_Server_setPeriodicRegister(
                 server,
                 logger,

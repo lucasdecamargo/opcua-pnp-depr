@@ -76,7 +76,7 @@
       </DisplayName>
       <Description>
         <Locale></Locale>
-        <Text>The current executed step represented as string. I.e., CameraCapture, ArUcoProcess, ...</Text>
+        <Text>The current executed step represented as string. I.e., CameraCapture, ImageProcessor, ...</Text>
       </Description>
       <WriteMask>0</WriteMask>
       <UserWriteMask>0</UserWriteMask>
@@ -190,7 +190,7 @@
           </ReferenceTypeId>
           <IsInverse>false</IsInverse>
           <TargetId>
-            <Identifier>ns=1;i=15071</Identifier>
+            <Identifier>ns=1;i=15254</Identifier>
           </TargetId>
         </ReferenceNode>
       </References>
@@ -212,73 +212,6 @@
       <Description>
         <Locale></Locale>
         <Text>The endpoints URL of the camera controllers to be used for getting images</Text>
-      </Description>
-      <WriteMask>0</WriteMask>
-      <UserWriteMask>0</UserWriteMask>
-      <RolePermissions />
-      <UserRolePermissions />
-      <AccessRestrictions>0</AccessRestrictions>
-      <References>
-        <ReferenceNode>
-          <ReferenceTypeId>
-            <Identifier>i=47</Identifier>
-          </ReferenceTypeId>
-          <IsInverse>true</IsInverse>
-          <TargetId>
-            <Identifier>ns=1;i=15069</Identifier>
-          </TargetId>
-        </ReferenceNode>
-        <ReferenceNode>
-          <ReferenceTypeId>
-            <Identifier>i=40</Identifier>
-          </ReferenceTypeId>
-          <IsInverse>false</IsInverse>
-          <TargetId>
-            <Identifier>i=63</Identifier>
-          </TargetId>
-        </ReferenceNode>
-        <ReferenceNode>
-          <ReferenceTypeId>
-            <Identifier>i=37</Identifier>
-          </ReferenceTypeId>
-          <IsInverse>false</IsInverse>
-          <TargetId>
-            <Identifier>i=78</Identifier>
-          </TargetId>
-        </ReferenceNode>
-      </References>
-      <Value>
-        <Value>
-          <Null xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd" />
-        </Value>
-      </Value>
-      <DataType>
-        <Identifier>i=12</Identifier>
-      </DataType>
-      <ValueRank>-1</ValueRank>
-      <ArrayDimensions />
-      <AccessLevel>1</AccessLevel>
-      <UserAccessLevel>1</UserAccessLevel>
-      <MinimumSamplingInterval>0</MinimumSamplingInterval>
-      <Historizing>false</Historizing>
-      <AccessLevelEx>0</AccessLevelEx>
-    </Node>
-    <Node i:type="VariableNode">
-      <NodeId>
-        <Identifier>ns=1;i=15071</Identifier>
-      </NodeId>
-      <NodeClass>Variable_2</NodeClass>
-      <BrowseName>
-        <NamespaceIndex>1</NamespaceIndex>
-        <Name>ArucoSkillEndpoint</Name>
-      </BrowseName>
-      <DisplayName>
-        <Locale></Locale>
-        <Text>ArucoSkillEndpoint</Text>
-      </DisplayName>
-      <Description>
-        <Locale></Locale>
-        <Text>The endpoint URL of the ArUco modules for image processing</Text>
       </Description>
       <WriteMask>0</WriteMask>
       <UserWriteMask>0</UserWriteMask>
@@ -2050,7 +1983,7 @@
       </DisplayName>
       <Description>
         <Locale></Locale>
-        <Text>The current executed step represented as string. I.e., CameraCapture, ArUcoProcess, ...</Text>
+        <Text>The current executed step represented as string. I.e., CameraCapture, ImageProcessor, ...</Text>
       </Description>
       <WriteMask>0</WriteMask>
       <UserWriteMask>0</UserWriteMask>
@@ -2146,7 +2079,7 @@
           </ReferenceTypeId>
           <IsInverse>false</IsInverse>
           <TargetId>
-            <Identifier>ns=1;i=15253</Identifier>
+            <Identifier>ns=1;i=15255</Identifier>
           </TargetId>
         </ReferenceNode>
       </References>
@@ -2212,20 +2145,87 @@
     </Node>
     <Node i:type="VariableNode">
       <NodeId>
-        <Identifier>ns=1;i=15253</Identifier>
+        <Identifier>ns=1;i=15254</Identifier>
       </NodeId>
       <NodeClass>Variable_2</NodeClass>
       <BrowseName>
         <NamespaceIndex>1</NamespaceIndex>
-        <Name>ArucoSkillEndpoint</Name>
+        <Name>ImageProcessorEndpoint</Name>
       </BrowseName>
       <DisplayName>
         <Locale></Locale>
-        <Text>ArucoSkillEndpoint</Text>
+        <Text>ImageProcessorEndpoint</Text>
       </DisplayName>
       <Description>
         <Locale></Locale>
-        <Text>The endpoint URL of the ArUco modules for image processing</Text>
+        <Text>The endpoint URL of the image processing modules for image processing</Text>
+      </Description>
+      <WriteMask>0</WriteMask>
+      <UserWriteMask>0</UserWriteMask>
+      <RolePermissions />
+      <UserRolePermissions />
+      <AccessRestrictions>0</AccessRestrictions>
+      <References>
+        <ReferenceNode>
+          <ReferenceTypeId>
+            <Identifier>i=47</Identifier>
+          </ReferenceTypeId>
+          <IsInverse>true</IsInverse>
+          <TargetId>
+            <Identifier>ns=1;i=15069</Identifier>
+          </TargetId>
+        </ReferenceNode>
+        <ReferenceNode>
+          <ReferenceTypeId>
+            <Identifier>i=40</Identifier>
+          </ReferenceTypeId>
+          <IsInverse>false</IsInverse>
+          <TargetId>
+            <Identifier>i=63</Identifier>
+          </TargetId>
+        </ReferenceNode>
+        <ReferenceNode>
+          <ReferenceTypeId>
+            <Identifier>i=37</Identifier>
+          </ReferenceTypeId>
+          <IsInverse>false</IsInverse>
+          <TargetId>
+            <Identifier>i=78</Identifier>
+          </TargetId>
+        </ReferenceNode>
+      </References>
+      <Value>
+        <Value>
+          <Null xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd" />
+        </Value>
+      </Value>
+      <DataType>
+        <Identifier>i=12</Identifier>
+      </DataType>
+      <ValueRank>-1</ValueRank>
+      <ArrayDimensions />
+      <AccessLevel>1</AccessLevel>
+      <UserAccessLevel>1</UserAccessLevel>
+      <MinimumSamplingInterval>0</MinimumSamplingInterval>
+      <Historizing>false</Historizing>
+      <AccessLevelEx>0</AccessLevelEx>
+    </Node>
+    <Node i:type="VariableNode">
+      <NodeId>
+        <Identifier>ns=1;i=15255</Identifier>
+      </NodeId>
+      <NodeClass>Variable_2</NodeClass>
+      <BrowseName>
+        <NamespaceIndex>1</NamespaceIndex>
+        <Name>ImageProcessorEndpoint</Name>
+      </BrowseName>
+      <DisplayName>
+        <Locale></Locale>
+        <Text>ImageProcessorEndpoint</Text>
+      </DisplayName>
+      <Description>
+        <Locale></Locale>
+        <Text>The endpoint URL of the image processing modules for image processing</Text>
       </Description>
       <WriteMask>0</WriteMask>
       <UserWriteMask>0</UserWriteMask>

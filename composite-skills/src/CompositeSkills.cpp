@@ -26,6 +26,8 @@ CompositeSkills::CompositeSkills(
         const std::string& clientAppUri,
         const std::string& clientName
 ) :
+        skillDetector(new SkillDetector(_loggerApp, _loggerOpcua, 
+            clientCertPath, clientKeyPath, clientAppUri, clientName)),
         compositeSettings(compositeSettings),
         logger(std::move(_loggerApp)),
         loggerOpcua(std::move(_loggerOpcua)),
@@ -33,20 +35,25 @@ CompositeSkills::CompositeSkills(
         clientCertPath(clientCertPath),
         clientKeyPath(clientKeyPath),
         clientAppUri(clientAppUri),
-        clientName(clientName)
+        clientName(clientName)        
 {
+    logger->info("Creating nodeset");
     if (!this->createNodesFromNodeset()) {
         throw std::runtime_error("Can not initialize CompositeSkills nodeset");
     }
 
+    logger->info("Initializing skills");
     UA_StatusCode retval = initSkills();
     if (retval != UA_STATUSCODE_GOOD)
+    {
+        logger->error("Cannot initialize skills");
         throw pnp::opcua::StatusCodeException(retval);
+    }
 }
 
 CompositeSkills::~CompositeSkills()
 {
- /* ... */
+    delete skillDetector;
 }
 
 void CompositeSkills::onServerAnnounce(
@@ -57,10 +64,33 @@ void CompositeSkills::onServerAnnounce(
     logger->info("Server announced! Name: "s + std::string((char*)serverOnNetwork->serverName.data)
         + " DiscoveryUrl: "s + std::string((char*)serverOnNetwork->discoveryUrl.data)
     );
+
+    skillDetector->onServerAnnounce(serverOnNetwork, isServerAnnounce);
 }
 
 UA_StatusCode CompositeSkills::initSkills()
 {
+    UA_NodeId rtMarkerDetectionSkillId = UA_NODEID_NUMERIC
+    (
+        pnp::opcua::UA_Server_getNamespaceIdByName(server, NAMESPACE_URI_COMPOSITE_SKILLS),
+        UA_COMPOSITE_SKILLSID_COMPOSITESKILLS_SKILLS_RTMARKERDETECTIONSKILL
+    );
+
+    rtMarkerDetectionSkillImpl = new RTMarkerDetectionSkillImpl(logger, loggerOpcua, this);
+
+    rtMarkerDetectionSkill = std::make_unique<pnp::opcua::skill::composed::RTMarkerDetectionSkill>
+                                (server, logger, rtMarkerDetectionSkillId, "RTMarkerDetectionSkill");
+    rtMarkerDetectionSkill->setImpl
+    (
+        rtMarkerDetectionSkillImpl,
+        [this]()
+        {
+            delete rtMarkerDetectionSkillImpl;
+        }
+    );
+
+    rtMarkerDetectionSkill->transition(pnp::opcua::ProgramStateNumber::READY);
+
     return UA_STATUSCODE_GOOD;
 }
 

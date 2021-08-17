@@ -60,7 +60,7 @@
   </UAObjectType>
   <UAVariable NodeId="ns=1;i=15068" BrowseName="1:SkillStep" ParentNodeId="ns=1;i=15001" DataType="String">
     <DisplayName>SkillStep</DisplayName>
-    <Description>The current executed step represented as string. I.e., CameraCapture, ArUcoProcess, ...</Description>
+    <Description>The current executed step represented as string. I.e., CameraCapture, ImageProcessor, ...</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
@@ -71,7 +71,7 @@
     <DisplayName>ParameterSet</DisplayName>
     <References>
       <Reference ReferenceType="HasComponent">ns=1;i=15070</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15071</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15254</Reference>
       <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15001</Reference>
@@ -86,9 +86,9 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15069</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15071" BrowseName="1:ArucoSkillEndpoint" ParentNodeId="ns=1;i=15069" DataType="String">
-    <DisplayName>ArucoSkillEndpoint</DisplayName>
-    <Description>The endpoint URL of the ArUco modules for image processing</Description>
+  <UAVariable NodeId="ns=1;i=15254" BrowseName="1:ImageProcessorEndpoint" ParentNodeId="ns=1;i=15069" DataType="String">
+    <DisplayName>ImageProcessorEndpoint</DisplayName>
+    <Description>The endpoint URL of the image processing modules for image processing</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
@@ -326,7 +326,7 @@
   </UAMethod>
   <UAVariable NodeId="ns=1;i=15250" BrowseName="1:SkillStep" ParentNodeId="ns=1;i=15213" DataType="String">
     <DisplayName>SkillStep</DisplayName>
-    <Description>The current executed step represented as string. I.e., CameraCapture, ArUcoProcess, ...</Description>
+    <Description>The current executed step represented as string. I.e., CameraCapture, ImageProcessor, ...</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15213</Reference>
@@ -336,7 +336,7 @@
     <DisplayName>ParameterSet</DisplayName>
     <References>
       <Reference ReferenceType="HasComponent">ns=1;i=15252</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15253</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15255</Reference>
       <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15213</Reference>
     </References>
@@ -349,9 +349,9 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15251</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15253" BrowseName="1:ArucoSkillEndpoint" ParentNodeId="ns=1;i=15251" DataType="String">
-    <DisplayName>ArucoSkillEndpoint</DisplayName>
-    <Description>The endpoint URL of the ArUco modules for image processing</Description>
+  <UAVariable NodeId="ns=1;i=15255" BrowseName="1:ImageProcessorEndpoint" ParentNodeId="ns=1;i=15251" DataType="String">
+    <DisplayName>ImageProcessorEndpoint</DisplayName>
+    <Description>The endpoint URL of the image processing modules for image processing</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15251</Reference>

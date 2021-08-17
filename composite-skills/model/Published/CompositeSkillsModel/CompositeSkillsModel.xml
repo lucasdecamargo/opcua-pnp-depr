@@ -29,7 +29,8 @@
     <Children>
         <Variable SymbolicName="COMPOSITE_SKILLS:SkillStep" TypeDefinition="OpcUa:BaseDataVariableType"
             DataType="OpcUa:String" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="Read">
-            <Description>The current executed step represented as string. I.e., CameraCapture, ArUcoProcess, ...</Description>
+            <!-- Acho que nao faz sentido essa variavel aqui visto que os passos vao transitar muito rapido -->
+            <Description>The current executed step represented as string. I.e., CameraCapture, ImageProcessor, ...</Description>
         </Variable>
 
         <Object SymbolicName="DI:ParameterSet" ModellingRule="Mandatory">
@@ -39,9 +40,9 @@
                 <Description>The endpoints URL of the camera controllers to be used for getting images</Description>
                 </Variable>
 
-                <Variable SymbolicName="COMPOSITE_SKILLS:ArucoSkillEndpoint" TypeDefinition="OpcUa:BaseDataVariableType"
+                <Variable SymbolicName="COMPOSITE_SKILLS:ImageProcessorEndpoint" TypeDefinition="OpcUa:BaseDataVariableType"
                     DataType="OpcUa:String" ModellingRule="Mandatory" ValueRank="Scalar" AccessLeve="ReadWrite">
-                <Description>The endpoint URL of the ArUco modules for image processing</Description>
+                <Description>The endpoint URL of the image processing modules for image processing</Description>
                 </Variable>
             </Children>
         </Object>

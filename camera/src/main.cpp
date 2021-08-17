@@ -1,5 +1,7 @@
 #include <Camera.h>
 
+#include <ImageFrameSkillImpl.hpp>
+
 #include <CLI/CLI.hpp>
 #include <libconfig.h++>
 

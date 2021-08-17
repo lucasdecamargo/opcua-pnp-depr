@@ -4,6 +4,9 @@
 #include <OpcUaServer.h>
 #include <libconfig.h++>
 
+#include <client/SkillDetector.h>
+#include <RTMarkerDetectionSkillImpl.h>
+
 class CompositeSkills
 {
 public:
@@ -27,6 +30,7 @@ public:
             UA_Boolean isServerAnnounce
     );
 
+    SkillDetector *skillDetector = nullptr;
     const libconfig::Setting& compositeSettings;
 
 private:
@@ -42,6 +46,8 @@ private:
     const std::string clientAppUri;
     const std::string clientName;
 
+    RTMarkerDetectionSkillImpl *rtMarkerDetectionSkillImpl{};
+    std::unique_ptr<pnp::opcua::skill::composed::RTMarkerDetectionSkill> rtMarkerDetectionSkill;
 };
 
 #endif

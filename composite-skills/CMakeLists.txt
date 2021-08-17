@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(composite-skills)
 
+set (DEPS_NODE "pnp-nodes-opcua")
 set(DEPS_INCLUDE_DIR "../include")
 set(DEPS_LIBRARY_DIR "pnp-nodes-opcua")
 
@@ -67,6 +68,7 @@ add_executable(${PROJECT_NAME}
     ${UA_TYPES_COMPOSITE_SKILLS_SOURCES}
     src/main.cpp
     src/CompositeSkills.cpp
+    src/RTMarkerDetectionSkillImpl.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -82,9 +84,12 @@ target_link_libraries(${PROJECT_NAME}
     CLI11::CLI11
     config++
     ${DEPS_LIBRARY_DIR}
+    ${DEPS_LIBRARY_DIR}-client
 )
 
 add_dependencies(${PROJECT_NAME}
+    ${DEPS_NODE}
+    ${DEPS_NODE}-client
     composite-skills-ns-composite_skills
     composite-skills-certs-server
     composite-skills-certs-client

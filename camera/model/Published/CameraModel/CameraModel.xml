@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModelDesign
+    xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:OpcUa="http://opcfoundation.org/UA/"
+    xmlns:DI="http://opcfoundation.org/UA/DI/"
+    xmlns:DEVICE="https://fortiss.org/UA/Device/"
+    xmlns:CAMERA="https://pnp.org/UA/Camera/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    TargetNamespace="https://pnp.org/UA/Camera/"
+    TargetXmlNamespace="https://pnp.org/UA/Camera/"
+    TargetVersion="0.1.0"
+    TargetPublicationDate="2021-08-08T00:00:00Z"
+    xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+
+<Namespaces>
+    <Namespace Name="Camera" Prefix="Camera" XmlNamespace="https://pnp.org/UA/Camera/Types.xsd" XmlPrefix="Camera">https://pnp.org/UA/Camera/</Namespace>
+    <Namespace Name="OpcUa" Version="1.03" PublicationDate="2013-12-02T00:00:00Z" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="DI" FilePath="OpcUaDiModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="fortissDevice" Prefix="fortiss_Device" XmlNamespace="https://fortiss.org/UA/Device/Types.xsd" XmlPrefix="fortiss_Device" FilePath="../../nodeset/DeviceModel/DeviceModel">https://fortiss.org/UA/Device/</Namespace>
+</Namespaces>
+
+<!-- ### Object Types ###-->
+
+<ObjectType SymbolicName="CAMERA:ICameraInfoParameterType" BaseType="OpcUa:BaseInterfaceType" IsAbstract="true" SupportsEvents="true">
+    <Description>The interface definition of camera callibration parameters</Description>
+
+    <Children>
+        <Object SymbolicName="DI:ParameterSet" ModellingRule="Mandatory">
+            <Children>
+                <Variable SymbolicName="CAMERA:DistortionCoefficients" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:Double" ModellingRule="Mandatory" ValueRank="Array" ArrayDimensions="3" AccessLevel="ReadWrite">
+                    <Description>Camera Distortion Coefficients = [k1, k2, p1, p2, k3]</Description>
+                </Variable>
+
+                <Variable SymbolicName="CAMERA:CameraMatrix" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:Double" ModellingRule="Mandatory" ValueRank="Array" ArrayDimensions="3,3" AccessLevel="ReadWrite">
+                    <Description>Camera Matrix = [(fx,0,cx), (0,fy,cy), (0,0,1)]</Description>
+                </Variable>
+            </Children>
+        </Object>
+    </Children>
+</ObjectType>
+
+<ObjectType SymbolicName="CAMERA:ImageSkillType" BaseType="DEVICE:SkillType" IsAbstract="true">
+</ObjectType>
+
+<ObjectType SymbolicName="CAMERA:ImageStreamSkillType" BaseType="CAMERA:ImageSkillType" IsAbstract="false">
+    <BrowseName>ImageStreamSkillType</BrowseName>
+    <Description>Image stream skill or video skill</Description>
+
+    <Children>
+        <Object SymbolicName="DI:ParameterSet" ModellingRule="Mandatory">
+            <Children>
+                <Variable SymbolicName="CAMERA:FPS" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:UInt16" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+                    <Description>Camera Stream FPS</Description>
+                    <DefaultValue>
+                        <uax:UInt16>27</uax:UInt16>
+                    </DefaultValue>
+                </Variable>
+            </Children>
+        </Object>
+    </Children>
+</ObjectType>
+
+<ObjectType SymbolicName="CAMERA:ImageFrameSkillType" BaseType="CAMERA:ImageSkillType" IsAbstract="false">
+    <BrowseName>ImageFrameSkillType</BrowseName>
+    <Description>Image frame skill or picture skill</Description>
+
+    <Children>
+        <Object SymbolicName="DI:ParameterSet" ModellingRule="Mandatory">
+            <Children>
+            </Children>
+        </Object>
+    </Children>
+</ObjectType>
+
+<ObjectType SymbolicName="CAMERA:CameraDeviceType" BaseType="DI:DeviceType" IsAbstract="false">
+</ObjectType>
+
+<!-- ### Objects ### -->
+
+<Object SymbolicName="CAMERA:CameraDevice" TypeDefinition="CAMERA:CameraDeviceType" SupportsEvents="true">
+    <Description>The Camera Device</Description>
+
+    <Children>
+        <Object SymbolicName="DEVICE:Skills" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">
+            <Description>Contains the skills of the semantic MES</Description>
+                <Children>
+                    <Object SymbolicName="CAMERA:ImageStreamSkill" TypeDefinition="CAMERA:ImageStreamSkillType" 
+                        ModellingRule="Mandatory" SupportsEvents="true"/>
+                    <Object SymbolicName="CAMERA:ImageFrameSkill" TypeDefinition="CAMERA:ImageFrameSkillType" 
+                        ModellingRule="Mandatory" SupportsEvents="true"/>
+                </Children>
+        </Object>
+    </Children>
+
+    <References>
+        <Reference IsInverse="false">
+            <ReferenceType>OpcUa:HasInterface</ReferenceType>
+            <TargetId>DEVICE:ISkillControllerType</TargetId>
+        </Reference>
+
+        <Reference IsInverse="false">
+            <ReferenceType>OpcUa:HasInterface</ReferenceType>
+            <TargetId>CAMERA:ICameraInfoParameterType</TargetId>
+        </Reference>
+
+        <Reference IsInverse="true">
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>DI:DeviceSet</TargetId>
+        </Reference>
+    </References>
+</Object>
+
+
+</ModelDesign>

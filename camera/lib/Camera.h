@@ -4,6 +4,9 @@
 #include <OpcUaServer.h>
 #include <libconfig.h++>
 
+#include <ImageFrameSkillImpl.hpp>
+#include <CameraDevice.h>
+
 class Camera
 {
 public:
@@ -27,6 +30,10 @@ private:
     std::shared_ptr<spdlog::logger> logger;
     std::shared_ptr<spdlog::logger> loggerOpcua;
     std::shared_ptr<pnp::opcua::OpcUaServer> server;
+
+    CameraDevice device;
+    ImageFrameSkillImpl *imageFrameSkillImpl{};
+    std::unique_ptr<pnp::opcua::skill::camera::ImageFrameSkill> imageFrameSkill;
 };
 
 #endif

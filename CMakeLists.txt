@@ -42,12 +42,12 @@ add_subdirectory(camera)
 
 add_executable(pnp-nodes 
     pnp-nodes.cpp
-    # $<TARGET_OBJECTS:${PROJECT_NAME}-opcua>
 )
 
-# add_dependencies(pnp-nodes
-#     ${PROJECT_NAME}-opcua
-# )
+add_dependencies(pnp-nodes
+    ${PROJECT_NAME}-opcua
+)
+
 target_link_libraries(pnp-nodes 
     pnp-nodes-opcua
 )
