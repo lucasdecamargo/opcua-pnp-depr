@@ -35,7 +35,7 @@ protected:
     bool suspend() override { return false; };
     bool reset() override { return false; };
 
-    // UA_StatusCode 
+    UA_StatusCode markerDetect();
 };
 
 #endif

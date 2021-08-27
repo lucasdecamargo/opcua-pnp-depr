@@ -68,6 +68,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Camera.cpp
     src/CameraDevice.cpp
+    src/CameraFrameParam.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC

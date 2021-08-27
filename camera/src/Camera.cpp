@@ -23,7 +23,8 @@ Camera::Camera(
     cameraSettings(cameraSettings),
     logger(std::move(_loggerApp)),
     loggerOpcua(std::move(_loggerOpcua)),
-    server(server)
+    server(server),
+    cameraFrameParam(logger,loggerOpcua, server)
 {
     if (!this->createNodesFromNodeset()) {
         throw std::runtime_error("Can not initialize Camera nodeset");
@@ -83,6 +84,8 @@ bool Camera::createNodesFromNodeset()
         logger->error("Adding the Camera namespace failed. Please check previous error output.");
         return false;
     }
+
+    cameraFrameParam.init();
 
     return true;
 }

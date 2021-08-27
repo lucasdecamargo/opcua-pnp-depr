@@ -1,6 +1,7 @@
 #include <CompositeSkills.h>
 
 #include <string>
+#include <unordered_set>
 
 #include <helper.hpp>
 #include <open62541/client.h>
@@ -15,6 +16,25 @@
 #include <composite_skills_nodeids.h>
 
 using namespace std::string_literals;
+
+namespace aux
+{
+    template<typename T>
+    void removeDuplicates(std::vector<T> &v)
+    {
+        typename std::vector<T>::iterator itr = v.begin();
+        std::unordered_set<T> s;
+    
+        for (auto curr = v.begin(); curr != v.end(); ++curr)
+        {
+            if (s.insert(*curr).second) {
+                *itr++ = *curr;
+            }
+        }
+    
+        v.erase(itr, v.end());
+    }
+}
 
 CompositeSkills::CompositeSkills(
         std::shared_ptr<spdlog::logger> _loggerApp,
@@ -66,6 +86,16 @@ void CompositeSkills::onServerAnnounce(
     );
 
     skillDetector->onServerAnnounce(serverOnNetwork, isServerAnnounce);
+
+    std::string endpoint = (char*)serverOnNetwork->discoveryUrl.data;
+    auto skills = skillDetector->getSkillForEndpoint(endpoint, "ImageFrameSkill");
+
+    if(skills.size() == 1)
+    {
+        logger->info("Camera endpoint found!");
+        cameraEndpoints.push_back(endpoint);
+        aux::removeDuplicates<std::string>(cameraEndpoints);
+    }
 }
 
 UA_StatusCode CompositeSkills::initSkills()

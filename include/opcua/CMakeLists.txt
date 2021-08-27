@@ -84,6 +84,7 @@ add_library(${PROJECT_NAME}-client
     client/RegisteredSkill.cpp
     client/SkillParameter.cpp
     client/SkillDetector.cpp
+    include/client/SkillHelper.hpp
 )
 
 target_include_directories(${PROJECT_NAME}-client PUBLIC

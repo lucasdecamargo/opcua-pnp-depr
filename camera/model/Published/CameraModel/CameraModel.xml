@@ -43,6 +43,57 @@
     </Children>
 </ObjectType>
 
+<ObjectType SymbolicName="CAMERA:ICameraFrameType" BaseType="OpcUa:BaseInterfaceType" IsAbstract="true" SupportsEvents="true">
+    <Description> The interface of camera frames. Defines the object where frames are saved into. Definition based on ROS sensor_msgs/Image Message</Description>
+
+    <Children>
+        <Object SymbolicName="CAMERA:Header" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">
+            <Description>Standard metadata for higher-level stamped data types</Description>
+            <Children>
+                <Variable SymbolicName="CAMERA:SequenceID" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:UInt32" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="Read">
+                    <Description>Consecutively increasing frame ID</Description>
+                </Variable>
+
+                <Variable SymbolicName="CAMERA:Stamp" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:DateTime" ModellingRule="Mandatory" AccessLevel="Read">
+                    <Description>Last frame timestamp</Description>
+                </Variable>
+
+                <Variable SymbolicName="CAMERA:FrameID" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:String" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="Read">
+                    <Description>Coordinate frame which the camera is associated with</Description>
+                </Variable>
+            </Children>
+        </Object>
+
+        <Variable SymbolicName="CAMERA:Data" TypeDefinition="OpcUa:BaseDataVariableType" DataType="OpcUa:ImageBMP"
+            ModellingRule="Mandatory" AccessLevel="Read">
+            <Description>Last frame byte string. Encoded as configured. Size is (step * rows)</Description>
+        </Variable>
+
+        <Variable SymbolicName="CAMERA:Step" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:UInt32" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+            <Description>Frame full row length in bytes</Description>
+        </Variable>
+
+        <Variable SymbolicName="CAMERA:Encoding" TypeDefinition="OpcUa:BaseDataVariableType"
+            DataType="OpcUa:String" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+            <Description>Camera frame encoding type. Mind the supported encodings</Description>
+        </Variable>
+
+        <Variable SymbolicName="CAMERA:Height" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:UInt32" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+            <Description>Frame height in pixels</Description>
+        </Variable>
+
+        <Variable SymbolicName="CAMERA:Width" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:UInt32" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+            <Description>Frame width in pixels</Description>
+        </Variable>
+    </Children>
+</ObjectType>
+
 <ObjectType SymbolicName="CAMERA:ImageSkillType" BaseType="DEVICE:SkillType" IsAbstract="true">
 </ObjectType>
 
@@ -86,6 +137,15 @@
     <Description>The Camera Device</Description>
 
     <Children>
+        <Object SymbolicName="CAMERA:Frame" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory" SupportsEvents="true">
+            <References>
+                <Reference IsInverse="false">
+                    <ReferenceType>OpcUa:HasInterface</ReferenceType>
+                    <TargetId>CAMERA:ICameraFrameType</TargetId>
+                </Reference>
+            </References>
+        </Object>
+
         <Object SymbolicName="DEVICE:Skills" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">
             <Description>Contains the skills of the semantic MES</Description>
                 <Children>

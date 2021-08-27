@@ -419,6 +419,49 @@ namespace pnp {
             return UA_Server_findChildOfType(ls.get(), logger, parent, nodeTypeDefinition, foundNodeId);
         }
 
+        inline bool UA_Server_findChildWithBrowseName(
+            UA_Server* server,
+            const std::shared_ptr<spdlog::logger>& logger,
+            const UA_NodeId& parentNode,
+            const UA_QualifiedName& browseName,
+            UA_NodeId* foundNodeId
+        ) {
+            UA_NodeId_clear(foundNodeId);
+
+            UA_BrowsePathResult bpr = UA_Server_browseSimplifiedBrowsePath(
+                server,
+                parentNode, 1,
+                &browseName
+            );
+
+            if(bpr.statusCode != UA_STATUSCODE_GOOD)
+            {
+                logger->warn("[UA_Server_findChildWithBrowseName] For BrowseName=\"{}\", bpr.statusCode = {}", (char*)browseName.name.data, UA_StatusCode_name(bpr.statusCode));
+                return false;
+            }
+
+            if(bpr.targetsSize < 1)
+            {
+                logger->error("[UA_Server_findChildWithBrowseName] For BrowseName=\"{}\", bpr.targetsSize < 1. Child not found", (char*)browseName.name.data);
+                return false;
+            }
+
+            UA_NodeId_copy(&bpr.targets[0].targetId.nodeId, foundNodeId);
+
+            return true;
+        }
+
+        inline bool UA_Server_findChildWithBrowseName(
+            const std::shared_ptr<pnp::opcua::OpcUaServer>& server,
+            const std::shared_ptr<spdlog::logger>& logger,
+            const UA_NodeId& parentNode,
+            const UA_QualifiedName& browseName,
+            UA_NodeId* foundNodeId
+        ) {
+            LockedServer ls = server->getLocked();
+            return UA_Server_findChildWithBrowseName(ls.get(), logger, parentNode, browseName, foundNodeId);
+        }
+
         inline UA_StatusCode UA_Client_getNamespacesMap(
                 UA_Client* client,
                 const std::shared_ptr<spdlog::logger>& logger,

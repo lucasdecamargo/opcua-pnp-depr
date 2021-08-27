@@ -424,3 +424,14 @@ CameraDevice_Skills_ImageFrameSkill_Resume,15423,Method
 CameraDevice_Skills_ImageFrameSkill_Suspend,15424,Method
 CameraDevice_Skills_ImageFrameSkill_Start,15425,Method
 CameraDevice_Skills_ImageFrameSkill_ParameterSet,15426,Object
+ICameraFrameType,15427,ObjectType
+ICameraFrameType_Header,15428,Object
+ICameraFrameType_Header_SequenceID,15429,Variable
+ICameraFrameType_Header_Stamp,15430,Variable
+ICameraFrameType_Header_FrameID,15431,Variable
+ICameraFrameType_Data,15432,Variable
+ICameraFrameType_Step,15433,Variable
+ICameraFrameType_Encoding,15434,Variable
+ICameraFrameType_Height,15435,Variable
+ICameraFrameType_Width,15436,Variable
+CameraDevice_Frame,15437,Object

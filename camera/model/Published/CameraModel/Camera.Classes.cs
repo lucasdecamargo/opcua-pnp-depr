@@ -199,6 +199,407 @@ namespace Camera
     #endif
     #endregion
 
+    #region ICameraFrameState Class
+    #if (!OPCUA_EXCLUDE_ICameraFrameState)
+    /// <summary>
+    /// Stores an instance of the ICameraFrameType ObjectType.
+    /// </summary>
+    /// <exclude />
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("Opc.Ua.ModelCompiler", "1.0.0.0")]
+    public partial class ICameraFrameState : BaseInterfaceState
+    {
+        #region Constructors
+        /// <summary>
+        /// Initializes the type with its default attribute values.
+        /// </summary>
+        public ICameraFrameState(NodeState parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// Returns the id of the default type definition node for the instance.
+        /// </summary>
+        protected override NodeId GetDefaultTypeDefinitionId(NamespaceTable namespaceUris)
+        {
+            return Opc.Ua.NodeId.Create(Camera.ObjectTypes.ICameraFrameType, Camera.Namespaces.Camera, namespaceUris);
+        }
+
+        #if (!OPCUA_EXCLUDE_InitializationStrings)
+        /// <summary>
+        /// Initializes the instance.
+        /// </summary>
+        protected override void Initialize(ISystemContext context)
+        {
+            Initialize(context, InitializationString);
+            InitializeOptionalChildren(context);
+        }
+
+        /// <summary>
+        /// Initializes the instance with a node.
+        /// </summary>
+        protected override void Initialize(ISystemContext context, NodeState source)
+        {
+            InitializeOptionalChildren(context);
+            base.Initialize(context, source);
+        }
+
+        /// <summary>
+        /// Initializes the any option children defined for the instance.
+        /// </summary>
+        protected override void InitializeOptionalChildren(ISystemContext context)
+        {
+            base.InitializeOptionalChildren(context);
+        }
+
+        #region Initialization String
+        private const string InitializationString =
+           "AwAAABoAAABodHRwczovL3BucC5vcmcvVUEvQ2FtZXJhLx8AAABodHRwOi8vb3BjZm91bmRhdGlvbi5v" +
+           "cmcvVUEvREkvHgAAAGh0dHBzOi8vZm9ydGlzcy5vcmcvVUEvRGV2aWNlL/////+EYIACAQAAAAEAGAAA" +
+           "AElDYW1lcmFGcmFtZVR5cGVJbnN0YW5jZQEBQzwBAUM8QzwAAAH/////BgAAACRggAoBAAAAAQAGAAAA" +
+           "SGVhZGVyAQFEPAMAAAAANQAAAFN0YW5kYXJkIG1ldGFkYXRhIGZvciBoaWdoZXItbGV2ZWwgc3RhbXBl" +
+           "ZCBkYXRhIHR5cGVzAC8AOkQ8AAD/////AwAAADVgiQoCAAAAAQAKAAAAU2VxdWVuY2VJRAEBRTwDAAAA" +
+           "ACEAAABDb25zZWN1dGl2ZWx5IGluY3JlYXNpbmcgZnJhbWUgSUQALwA/RTwAAAAH/////wEB/////wAA" +
+           "AAA1YIkKAgAAAAEABQAAAFN0YW1wAQFGPAMAAAAAFAAAAExhc3QgZnJhbWUgdGltZXN0YW1wAC8AP0Y8" +
+           "AAAADf////8BAf////8AAAAANWCJCgIAAAABAAcAAABGcmFtZUlEAQFHPAMAAAAANAAAAENvb3JkaW5h" +
+           "dGUgZnJhbWUgd2hpY2ggdGhlIGNhbWVyYSBpcyBhc3NvY2lhdGVkIHdpdGgALwA/RzwAAAAM/////wEB" +
+           "/////wAAAAA1YIkKAgAAAAEABAAAAERhdGEBAUg8AwAAAABEAAAATGFzdCBmcmFtZSBieXRlIHN0cmlu" +
+           "Zy4gRW5jb2RlZCBhcyBjb25maWd1cmVkLiBTaXplIGlzIChzdGVwICogcm93cykALwA/SDwAAAEA0Af/" +
+           "////AQH/////AAAAADVgiQoCAAAAAQAEAAAAU3RlcAEBSTwDAAAAAB4AAABGcmFtZSBmdWxsIHJvdyBs" +
+           "ZW5ndGggaW4gYnl0ZXMALwA/STwAAAAH/////wMD/////wAAAAA1YIkKAgAAAAEACAAAAEVuY29kaW5n" +
+           "AQFKPAMAAAAAOAAAAENhbWVyYSBmcmFtZSBlbmNvZGluZyB0eXBlLiBNaW5kIHRoZSBzdXBwb3J0ZWQg" +
+           "ZW5jb2RpbmdzAC8AP0o8AAAADP////8DA/////8AAAAANWCJCgIAAAABAAYAAABIZWlnaHQBAUs8AwAA" +
+           "AAAWAAAARnJhbWUgaGVpZ2h0IGluIHBpeGVscwAvAD9LPAAAAAf/////AwP/////AAAAADVgiQoCAAAA" +
+           "AQAFAAAAV2lkdGgBAUw8AwAAAAAVAAAARnJhbWUgd2lkdGggaW4gcGl4ZWxzAC8AP0w8AAAAB/////8D" +
+           "A/////8AAAAA";
+        #endregion
+        #endif
+        #endregion
+
+        #region Public Properties
+        /// <remarks />
+        public BaseObjectState Header
+        {
+            get
+            {
+                return m_header;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_header, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_header = value;
+            }
+        }
+
+        /// <remarks />
+        public BaseDataVariableState<byte[]> Data
+        {
+            get
+            {
+                return m_data;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_data, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_data = value;
+            }
+        }
+
+        /// <remarks />
+        public BaseDataVariableState<uint> Step
+        {
+            get
+            {
+                return m_step;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_step, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_step = value;
+            }
+        }
+
+        /// <remarks />
+        public BaseDataVariableState<string> Encoding
+        {
+            get
+            {
+                return m_encoding;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_encoding, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_encoding = value;
+            }
+        }
+
+        /// <remarks />
+        public BaseDataVariableState<uint> Height
+        {
+            get
+            {
+                return m_height;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_height, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_height = value;
+            }
+        }
+
+        /// <remarks />
+        public BaseDataVariableState<uint> Width
+        {
+            get
+            {
+                return m_width;
+            }
+
+            set
+            {
+                if (!Object.ReferenceEquals(m_width, value))
+                {
+                    ChangeMasks |= NodeStateChangeMasks.Children;
+                }
+
+                m_width = value;
+            }
+        }
+        #endregion
+
+        #region Overridden Methods
+        /// <summary>
+        /// Populates a list with the children that belong to the node.
+        /// </summary>
+        /// <param name="context">The context for the system being accessed.</param>
+        /// <param name="children">The list of children to populate.</param>
+        public override void GetChildren(
+            ISystemContext context,
+            IList<BaseInstanceState> children)
+        {
+            if (m_header != null)
+            {
+                children.Add(m_header);
+            }
+
+            if (m_data != null)
+            {
+                children.Add(m_data);
+            }
+
+            if (m_step != null)
+            {
+                children.Add(m_step);
+            }
+
+            if (m_encoding != null)
+            {
+                children.Add(m_encoding);
+            }
+
+            if (m_height != null)
+            {
+                children.Add(m_height);
+            }
+
+            if (m_width != null)
+            {
+                children.Add(m_width);
+            }
+
+            base.GetChildren(context, children);
+        }
+
+        /// <summary>
+        /// Finds the child with the specified browse name.
+        /// </summary>
+        protected override BaseInstanceState FindChild(
+            ISystemContext context,
+            QualifiedName browseName,
+            bool createOrReplace,
+            BaseInstanceState replacement)
+        {
+            if (QualifiedName.IsNull(browseName))
+            {
+                return null;
+            }
+
+            BaseInstanceState instance = null;
+
+            switch (browseName.Name)
+            {
+                case Camera.BrowseNames.Header:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Header == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Header = new BaseObjectState(this);
+                            }
+                            else
+                            {
+                                Header = (BaseObjectState)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Header;
+                    break;
+                }
+
+                case Camera.BrowseNames.Data:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Data == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Data = new BaseDataVariableState<byte[]>(this);
+                            }
+                            else
+                            {
+                                Data = (BaseDataVariableState<byte[]>)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Data;
+                    break;
+                }
+
+                case Camera.BrowseNames.Step:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Step == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Step = new BaseDataVariableState<uint>(this);
+                            }
+                            else
+                            {
+                                Step = (BaseDataVariableState<uint>)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Step;
+                    break;
+                }
+
+                case Camera.BrowseNames.Encoding:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Encoding == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Encoding = new BaseDataVariableState<string>(this);
+                            }
+                            else
+                            {
+                                Encoding = (BaseDataVariableState<string>)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Encoding;
+                    break;
+                }
+
+                case Camera.BrowseNames.Height:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Height == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Height = new BaseDataVariableState<uint>(this);
+                            }
+                            else
+                            {
+                                Height = (BaseDataVariableState<uint>)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Height;
+                    break;
+                }
+
+                case Camera.BrowseNames.Width:
+                {
+                    if (createOrReplace)
+                    {
+                        if (Width == null)
+                        {
+                            if (replacement == null)
+                            {
+                                Width = new BaseDataVariableState<uint>(this);
+                            }
+                            else
+                            {
+                                Width = (BaseDataVariableState<uint>)replacement;
+                            }
+                        }
+                    }
+
+                    instance = Width;
+                    break;
+                }
+            }
+
+            if (instance != null)
+            {
+                return instance;
+            }
+
+            return base.FindChild(context, browseName, createOrReplace, replacement);
+        }
+        #endregion
+
+        #region Private Fields
+        private BaseObjectState m_header;
+        private BaseDataVariableState<byte[]> m_data;
+        private BaseDataVariableState<uint> m_step;
+        private BaseDataVariableState<string> m_encoding;
+        private BaseDataVariableState<uint> m_height;
+        private BaseDataVariableState<uint> m_width;
+        #endregion
+    }
+    #endif
+    #endregion
+
     #region ImageSkillState Class
     #if (!OPCUA_EXCLUDE_ImageSkillState)
     /// <summary>

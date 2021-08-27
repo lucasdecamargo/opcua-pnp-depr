@@ -193,6 +193,11 @@ namespace Camera
         public const uint ICameraInfoParameterType_ParameterSet = 15002;
 
         /// <summary>
+        /// The identifier for the ICameraFrameType_Header Object.
+        /// </summary>
+        public const uint ICameraFrameType_Header = 15428;
+
+        /// <summary>
         /// The identifier for the ImageStreamSkillType_ParameterSet Object.
         /// </summary>
         public const uint ImageStreamSkillType_ParameterSet = 15139;
@@ -216,6 +221,11 @@ namespace Camera
         /// The identifier for the CameraDevice_CPIdentifier_NetworkAddress Object.
         /// </summary>
         public const uint CameraDevice_CPIdentifier_NetworkAddress = 15337;
+
+        /// <summary>
+        /// The identifier for the CameraDevice_Frame Object.
+        /// </summary>
+        public const uint CameraDevice_Frame = 15437;
 
         /// <summary>
         /// The identifier for the CameraDevice_Skills Object.
@@ -258,6 +268,11 @@ namespace Camera
         public const uint ICameraInfoParameterType = 15001;
 
         /// <summary>
+        /// The identifier for the ICameraFrameType ObjectType.
+        /// </summary>
+        public const uint ICameraFrameType = 15427;
+
+        /// <summary>
         /// The identifier for the ImageSkillType ObjectType.
         /// </summary>
         public const uint ImageSkillType = 15005;
@@ -296,6 +311,46 @@ namespace Camera
         /// The identifier for the ICameraInfoParameterType_ParameterSet_CameraMatrix Variable.
         /// </summary>
         public const uint ICameraInfoParameterType_ParameterSet_CameraMatrix = 15004;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_SequenceID Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Header_SequenceID = 15429;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_Stamp Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Header_Stamp = 15430;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_FrameID Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Header_FrameID = 15431;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Data Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Data = 15432;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Step Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Step = 15433;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Encoding Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Encoding = 15434;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Height Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Height = 15435;
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Width Variable.
+        /// </summary>
+        public const uint ICameraFrameType_Width = 15436;
 
         /// <summary>
         /// The identifier for the ImageSkillType_CurrentState_Id Variable.
@@ -1363,6 +1418,11 @@ namespace Camera
         public static readonly ExpandedNodeId ICameraInfoParameterType_ParameterSet = new ExpandedNodeId(Camera.Objects.ICameraInfoParameterType_ParameterSet, Camera.Namespaces.Camera);
 
         /// <summary>
+        /// The identifier for the ICameraFrameType_Header Object.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Header = new ExpandedNodeId(Camera.Objects.ICameraFrameType_Header, Camera.Namespaces.Camera);
+
+        /// <summary>
         /// The identifier for the ImageStreamSkillType_ParameterSet Object.
         /// </summary>
         public static readonly ExpandedNodeId ImageStreamSkillType_ParameterSet = new ExpandedNodeId(Camera.Objects.ImageStreamSkillType_ParameterSet, Camera.Namespaces.Camera);
@@ -1386,6 +1446,11 @@ namespace Camera
         /// The identifier for the CameraDevice_CPIdentifier_NetworkAddress Object.
         /// </summary>
         public static readonly ExpandedNodeId CameraDevice_CPIdentifier_NetworkAddress = new ExpandedNodeId(Camera.Objects.CameraDevice_CPIdentifier_NetworkAddress, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the CameraDevice_Frame Object.
+        /// </summary>
+        public static readonly ExpandedNodeId CameraDevice_Frame = new ExpandedNodeId(Camera.Objects.CameraDevice_Frame, Camera.Namespaces.Camera);
 
         /// <summary>
         /// The identifier for the CameraDevice_Skills Object.
@@ -1428,6 +1493,11 @@ namespace Camera
         public static readonly ExpandedNodeId ICameraInfoParameterType = new ExpandedNodeId(Camera.ObjectTypes.ICameraInfoParameterType, Camera.Namespaces.Camera);
 
         /// <summary>
+        /// The identifier for the ICameraFrameType ObjectType.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType = new ExpandedNodeId(Camera.ObjectTypes.ICameraFrameType, Camera.Namespaces.Camera);
+
+        /// <summary>
         /// The identifier for the ImageSkillType ObjectType.
         /// </summary>
         public static readonly ExpandedNodeId ImageSkillType = new ExpandedNodeId(Camera.ObjectTypes.ImageSkillType, Camera.Namespaces.Camera);
@@ -1466,6 +1536,46 @@ namespace Camera
         /// The identifier for the ICameraInfoParameterType_ParameterSet_CameraMatrix Variable.
         /// </summary>
         public static readonly ExpandedNodeId ICameraInfoParameterType_ParameterSet_CameraMatrix = new ExpandedNodeId(Camera.Variables.ICameraInfoParameterType_ParameterSet_CameraMatrix, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_SequenceID Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Header_SequenceID = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Header_SequenceID, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_Stamp Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Header_Stamp = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Header_Stamp, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Header_FrameID Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Header_FrameID = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Header_FrameID, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Data Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Data = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Data, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Step Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Step = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Step, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Encoding Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Encoding = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Encoding, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Height Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Height = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Height, Camera.Namespaces.Camera);
+
+        /// <summary>
+        /// The identifier for the ICameraFrameType_Width Variable.
+        /// </summary>
+        public static readonly ExpandedNodeId ICameraFrameType_Width = new ExpandedNodeId(Camera.Variables.ICameraFrameType_Width, Camera.Namespaces.Camera);
 
         /// <summary>
         /// The identifier for the ImageSkillType_CurrentState_Id Variable.
@@ -2397,6 +2507,36 @@ namespace Camera
         public const string CameraDeviceType = "CameraDeviceType";
 
         /// <summary>
+        /// The BrowseName for the Data component.
+        /// </summary>
+        public const string Data = "Data";
+
+        /// <summary>
+        /// The BrowseName for the Encoding component.
+        /// </summary>
+        public const string Encoding = "Encoding";
+
+        /// <summary>
+        /// The BrowseName for the Frame component.
+        /// </summary>
+        public const string Frame = "Frame";
+
+        /// <summary>
+        /// The BrowseName for the Header component.
+        /// </summary>
+        public const string Header = "Header";
+
+        /// <summary>
+        /// The BrowseName for the Height component.
+        /// </summary>
+        public const string Height = "Height";
+
+        /// <summary>
+        /// The BrowseName for the ICameraFrameType component.
+        /// </summary>
+        public const string ICameraFrameType = "ICameraFrameType";
+
+        /// <summary>
         /// The BrowseName for the ICameraInfoParameterType component.
         /// </summary>
         public const string ICameraInfoParameterType = "ICameraInfoParameterType";
@@ -2415,6 +2555,16 @@ namespace Camera
         /// The BrowseName for the ImageStreamSkillType component.
         /// </summary>
         public const string ImageStreamSkillType = "ImageStreamSkillType";
+
+        /// <summary>
+        /// The BrowseName for the Step component.
+        /// </summary>
+        public const string Step = "Step";
+
+        /// <summary>
+        /// The BrowseName for the Width component.
+        /// </summary>
+        public const string Width = "Width";
     }
     #endregion
 

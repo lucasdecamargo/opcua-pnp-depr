@@ -32,6 +32,7 @@ public:
 
     SkillDetector *skillDetector = nullptr;
     const libconfig::Setting& compositeSettings;
+    std::vector<std::string> cameraEndpoints;
 
 private:
     UA_StatusCode initSkills();
