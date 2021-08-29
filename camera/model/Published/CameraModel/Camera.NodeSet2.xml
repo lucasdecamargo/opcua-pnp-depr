@@ -251,7 +251,7 @@
       <Reference ReferenceType="HasProperty">ns=1;i=15309</Reference>
       <Reference ReferenceType="HasProperty">ns=1;i=15311</Reference>
       <Reference ReferenceType="HasProperty">ns=1;i=15313</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15437</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15438</Reference>
       <Reference ReferenceType="HasComponent">ns=1;i=15349</Reference>
       <Reference ReferenceType="i=17603">ns=3;i=15396</Reference>
       <Reference ReferenceType="i=17603">ns=1;i=15001</Reference>
@@ -323,8 +323,8 @@
       <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15279</Reference>
     </References>
   </UAVariable>
-  <UAObject NodeId="ns=1;i=15437" BrowseName="1:Frame" ParentNodeId="ns=1;i=15279" EventNotifier="1">
-    <DisplayName>Frame</DisplayName>
+  <UAObject NodeId="ns=1;i=15438" BrowseName="1:Image" ParentNodeId="ns=1;i=15279" EventNotifier="1">
+    <DisplayName>Image</DisplayName>
     <References>
       <Reference ReferenceType="i=17603">ns=1;i=15427</Reference>
       <Reference ReferenceType="HasTypeDefinition">i=58</Reference>

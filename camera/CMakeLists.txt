@@ -5,6 +5,7 @@ set(DEPS_INCLUDE_DIR "../include")
 set(DEPS_LIBRARY_DIR "pnp-nodes-opcua")
 
 find_package(open62541 1.2 REQUIRED COMPONENTS FullNamespace Events Encryption)
+find_package(OpenCV REQUIRED)
 find_package(CLI11 CONFIG REQUIRED)
 
 set(GENERATE_OUTPUT_DIR "${CMAKE_BINARY_DIR}/src_generated/${PROJECT_NAME}-client")
@@ -69,6 +70,9 @@ add_executable(${PROJECT_NAME}
     src/Camera.cpp
     src/CameraDevice.cpp
     src/CameraFrameParam.cpp
+    src/CameraDevice.cpp
+    src/CvDevice.cpp
+    src/ImageSkillsImpl.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -77,6 +81,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     $<TARGET_PROPERTY:open62541::open62541,INTERFACE_INCLUDE_DIRECTORIES>
     $<TARGET_PROPERTY:CLI11::CLI11,INTERFACE_INCLUDE_DIRECTORIES>
     ${DEPS_INCLUDE_DIR}
+    ${OpenCV_INCLUDE_DIRS}
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -84,6 +89,7 @@ target_link_libraries(${PROJECT_NAME}
     CLI11::CLI11
     config++
     ${DEPS_LIBRARY_DIR}
+    ${OpenCV_LIBS}
 )
 
 add_dependencies(${PROJECT_NAME}

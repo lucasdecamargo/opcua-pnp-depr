@@ -223,9 +223,9 @@ namespace Camera
         public const uint CameraDevice_CPIdentifier_NetworkAddress = 15337;
 
         /// <summary>
-        /// The identifier for the CameraDevice_Frame Object.
+        /// The identifier for the CameraDevice_Image Object.
         /// </summary>
-        public const uint CameraDevice_Frame = 15437;
+        public const uint CameraDevice_Image = 15438;
 
         /// <summary>
         /// The identifier for the CameraDevice_Skills Object.
@@ -1448,9 +1448,9 @@ namespace Camera
         public static readonly ExpandedNodeId CameraDevice_CPIdentifier_NetworkAddress = new ExpandedNodeId(Camera.Objects.CameraDevice_CPIdentifier_NetworkAddress, Camera.Namespaces.Camera);
 
         /// <summary>
-        /// The identifier for the CameraDevice_Frame Object.
+        /// The identifier for the CameraDevice_Image Object.
         /// </summary>
-        public static readonly ExpandedNodeId CameraDevice_Frame = new ExpandedNodeId(Camera.Objects.CameraDevice_Frame, Camera.Namespaces.Camera);
+        public static readonly ExpandedNodeId CameraDevice_Image = new ExpandedNodeId(Camera.Objects.CameraDevice_Image, Camera.Namespaces.Camera);
 
         /// <summary>
         /// The identifier for the CameraDevice_Skills Object.
@@ -2517,11 +2517,6 @@ namespace Camera
         public const string Encoding = "Encoding";
 
         /// <summary>
-        /// The BrowseName for the Frame component.
-        /// </summary>
-        public const string Frame = "Frame";
-
-        /// <summary>
         /// The BrowseName for the Header component.
         /// </summary>
         public const string Header = "Header";
@@ -2540,6 +2535,11 @@ namespace Camera
         /// The BrowseName for the ICameraInfoParameterType component.
         /// </summary>
         public const string ICameraInfoParameterType = "ICameraInfoParameterType";
+
+        /// <summary>
+        /// The BrowseName for the Image component.
+        /// </summary>
+        public const string Image = "Image";
 
         /// <summary>
         /// The BrowseName for the ImageFrameSkillType component.

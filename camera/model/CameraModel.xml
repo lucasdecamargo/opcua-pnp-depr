@@ -137,7 +137,7 @@
     <Description>The Camera Device</Description>
 
     <Children>
-        <Object SymbolicName="CAMERA:Frame" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory" SupportsEvents="true">
+        <Object SymbolicName="CAMERA:Image" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory" SupportsEvents="true">
             <References>
                 <Reference IsInverse="false">
                     <ReferenceType>OpcUa:HasInterface</ReferenceType>

@@ -434,4 +434,4 @@ ICameraFrameType_Step,15433,Variable
 ICameraFrameType_Encoding,15434,Variable
 ICameraFrameType_Height,15435,Variable
 ICameraFrameType_Width,15436,Variable
-CameraDevice_Frame,15437,Object
+CameraDevice_Image,15438,Object

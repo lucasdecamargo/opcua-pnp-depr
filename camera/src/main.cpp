@@ -1,6 +1,6 @@
 #include <Camera.h>
 
-#include <ImageFrameSkillImpl.hpp>
+#include <ImageFrameSkillImpl.h>
 
 #include <CLI/CLI.hpp>
 #include <libconfig.h++>
@@ -9,6 +9,13 @@
 #include <logging.h>
 #include <logging_opcua.h>
 #include <helper.hpp>
+
+#include <Webcam.hpp>
+#include <CameraDeviceProperties.hpp>
+
+// #include <iostream>
+
+#define CAMERA_DEVICE Webcam
 
 std::shared_ptr<spdlog::logger> logger;
 
@@ -88,8 +95,12 @@ int main(int argc, char* argv[])
         std::shared_ptr<spdlog::logger> loggerUa = logger->clone(logger->name() + "-ua");
         pnp::log::LoggerFactory::setLoggerLevel(loggerUa, settings["logging"]["level"]["opcua"]);
 
+        std::shared_ptr<CameraDevice> device = std::make_shared<CvDevice>("/home/lucas/lena.png");
+        device->set(CameraDeviceProperties::CAP_PROP_FORMAT, CameraDeviceEncoders::BMP);
+        device->open();
+
         std::shared_ptr<Camera> camera = std::make_shared<Camera>(
-            logger, loggerUa, uaServer, settings["camera"]);
+            logger, loggerUa, uaServer, settings["camera"], device);
 
         if(uaServer->init(true, nullptr) == UA_STATUSCODE_GOOD)
         {

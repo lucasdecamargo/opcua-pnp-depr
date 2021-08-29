@@ -4,7 +4,7 @@
 #include <OpcUaServer.h>
 #include <libconfig.h++>
 
-#include <ImageFrameSkillImpl.hpp>
+#include <ImageFrameSkillImpl.h>
 #include <CameraDevice.h>
 #include <CameraFrameParam.h>
 
@@ -15,7 +15,8 @@ public:
         std::shared_ptr<spdlog::logger> _loggerApp,
         std::shared_ptr<spdlog::logger> _loggerOpcua,
         const std::shared_ptr<pnp::opcua::OpcUaServer>& server,
-        const libconfig::Setting& cameraSettings
+        const libconfig::Setting& cameraSettings,
+        std::shared_ptr<CameraDevice>& cameraDevice
     );
 
     virtual ~Camera();
@@ -23,6 +24,7 @@ public:
     Camera(const Camera&) = delete;
 
     const libconfig::Setting& cameraSettings;
+    std::shared_ptr<CameraDevice> device;
 
 private:
     UA_StatusCode initSkills();
@@ -32,10 +34,10 @@ private:
     std::shared_ptr<spdlog::logger> loggerOpcua;
     std::shared_ptr<pnp::opcua::OpcUaServer> server;
 
-    CameraDevice device;
     ImageFrameSkillImpl *imageFrameSkillImpl{};
     std::unique_ptr<pnp::opcua::skill::camera::ImageFrameSkill> imageFrameSkill;
 
+public:
     CameraFrameParam cameraFrameParam;
 };
 

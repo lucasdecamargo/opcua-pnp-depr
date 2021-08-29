@@ -751,7 +751,7 @@
           </ReferenceTypeId>
           <IsInverse>false</IsInverse>
           <TargetId>
-            <Identifier>ns=1;i=15437</Identifier>
+            <Identifier>ns=1;i=15438</Identifier>
           </TargetId>
         </ReferenceNode>
         <ReferenceNode>
@@ -3559,7 +3559,7 @@
           </ReferenceTypeId>
           <IsInverse>true</IsInverse>
           <TargetId>
-            <Identifier>ns=1;i=15437</Identifier>
+            <Identifier>ns=1;i=15438</Identifier>
           </TargetId>
         </ReferenceNode>
       </References>
@@ -4183,16 +4183,16 @@
     </Node>
     <Node i:type="ObjectNode">
       <NodeId>
-        <Identifier>ns=1;i=15437</Identifier>
+        <Identifier>ns=1;i=15438</Identifier>
       </NodeId>
       <NodeClass>Object_1</NodeClass>
       <BrowseName>
         <NamespaceIndex>1</NamespaceIndex>
-        <Name>Frame</Name>
+        <Name>Image</Name>
       </BrowseName>
       <DisplayName>
         <Locale></Locale>
-        <Text>Frame</Text>
+        <Text>Image</Text>
       </DisplayName>
       <Description i:nil="true" />
       <WriteMask>0</WriteMask>

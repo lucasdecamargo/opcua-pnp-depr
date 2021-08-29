@@ -22,7 +22,7 @@ public:
     UA_StatusCode setHeaderStamp(UA_DateTime value);
     UA_StatusCode setHeaderFrameID(std::string value);
 
-    UA_StatusCode setData();
+    UA_StatusCode setData(UA_ByteString value);
     UA_StatusCode setStep(uint32_t value);
     UA_StatusCode setEncoding(std::string value);
     UA_StatusCode setHeight(uint32_t value);
@@ -32,14 +32,14 @@ public:
     UA_StatusCode getHeaderStamp(UA_DateTime &value);
     UA_StatusCode getHeaderFrameID(std::string &value);
 
-    UA_StatusCode getData();
+    UA_StatusCode getData(UA_ByteString &value);
     UA_StatusCode getStep(uint32_t &value);
     UA_StatusCode getEncoding(std::string &value);
     UA_StatusCode getHeight(uint32_t &value);
     UA_StatusCode getWidth(uint32_t &value);
 
 protected:
-    UA_NodeId frameNodeId;
+    UA_NodeId imageNodeId;
 
     UA_NodeId headerSequenceIDNodeId;
     UA_NodeId headerStampNodeId;

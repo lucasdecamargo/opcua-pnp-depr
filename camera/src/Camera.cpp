@@ -18,9 +18,11 @@ Camera::Camera(
     std::shared_ptr<spdlog::logger> _loggerApp,
     std::shared_ptr<spdlog::logger> _loggerOpcua,
     const std::shared_ptr<pnp::opcua::OpcUaServer>& server,
-    const libconfig::Setting& cameraSettings
+    const libconfig::Setting& cameraSettings,
+    std::shared_ptr<CameraDevice>& cameraDevice
 ) :
     cameraSettings(cameraSettings),
+    device(cameraDevice),
     logger(std::move(_loggerApp)),
     loggerOpcua(std::move(_loggerOpcua)),
     server(server),
@@ -53,7 +55,7 @@ UA_StatusCode Camera::initSkills()
         );
     }
 
-    imageFrameSkillImpl = new ImageFrameSkillImpl(logger, &device);
+    imageFrameSkillImpl = new ImageFrameSkillImpl(logger, device, this);
 
     imageFrameSkill = std::make_unique<pnp::opcua::skill::camera::ImageFrameSkill>
                         (server, logger, imageFrameSkillId, "ImageFrameSkill");

@@ -34,10 +34,10 @@ void CameraFrameParam::init()
         size_t nsIdx;
         UA_Server_getNamespaceByName(ls.get(), UA_String_fromChars(NAMESPACE_URI_CAMERA), &nsIdx);
 
-        frameNodeId = UA_NODEID_NUMERIC(
+        imageNodeId = UA_NODEID_NUMERIC(
             pnp::opcua::UA_Server_getNamespaceIdByName(
                 ls.get(), NAMESPACE_URI_CAMERA),
-                UA_CAMERAID_CAMERADEVICE_FRAME
+                UA_CAMERAID_CAMERADEVICE_IMAGE
             );
 
         UA_NodeId headerNodeId;
@@ -45,7 +45,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Header")),
             &headerNodeId
         );
@@ -77,7 +77,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Data")),
             &dataNodeId
         );
@@ -85,7 +85,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Step")),
             &stepNodeId
         );
@@ -93,7 +93,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Encoding")),
             &encodingNodeId
         );
@@ -101,7 +101,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Height")),
             &heightNodeId
         );
@@ -109,7 +109,7 @@ void CameraFrameParam::init()
         pnp::opcua::UA_Server_findChildWithBrowseName(
             ls.get(),
             logger,
-            frameNodeId,
+            imageNodeId,
             UA_QUALIFIEDNAME(static_cast<UA_UInt16>((UA_UInt16)nsIdx), const_cast<char*>("Width")),
             &widthNodeId
         );
@@ -150,9 +150,14 @@ UA_StatusCode CameraFrameParam::setHeaderFrameID(std::string value)
     return UA_Server_writeValue(ls.get(), headerFrameIDNodeId, v);
 }
 
-UA_StatusCode CameraFrameParam::setData()
+UA_StatusCode CameraFrameParam::setData(UA_ByteString value)
 {
-    return UA_STATUSCODE_GOOD;
+    UA_Variant v;
+    UA_Variant_init(&v);
+    UA_Variant_setScalar(&v, (UA_ImageBMP*)(&value), &UA_TYPES[UA_TYPES_IMAGEBMP]);
+    LockedServer ls = server->getLocked();
+
+    return UA_Server_writeValue(ls.get(), dataNodeId, v);
 }
 
 UA_StatusCode CameraFrameParam::setStep(uint32_t value)
@@ -271,8 +276,26 @@ UA_StatusCode CameraFrameParam::getHeaderFrameID(std::string &value)
     return UA_STATUSCODE_GOOD;
 }
 
-UA_StatusCode CameraFrameParam::getData()
+UA_StatusCode CameraFrameParam::getData(UA_ByteString &value)
 {
+    UA_Variant var;
+    
+    {
+        LockedServer ls = server->getLocked();
+        UA_StatusCode retval = UA_Server_readValue(ls.get(), dataNodeId, &var);
+
+         if (retval != UA_STATUSCODE_GOOD) return retval;
+    }
+
+    if(var.type != NULL) // else, value is not set
+    {
+        if(var.type != &UA_TYPES[UA_TYPES_BYTESTRING]) return UA_STATUSCODE_BADTYPEMISMATCH;
+
+        UA_ByteString_copy((UA_ByteString*)var.data, &value);
+    }
+
+    UA_Variant_clear(&var);
+
     return UA_STATUSCODE_GOOD;
 }
 

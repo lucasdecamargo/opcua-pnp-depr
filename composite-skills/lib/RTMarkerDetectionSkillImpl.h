@@ -2,7 +2,7 @@
 #define PNP_RTMARKERDETECTIONSKILLIMPL_H
 
 #include <skills/composed/RTMarkerDetectionSkill.hpp>
-#include<types_device_model_generated.h>
+#include <types_device_model_generated.h>
 
 class CompositeSkills;
 
