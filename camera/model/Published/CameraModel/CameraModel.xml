@@ -43,8 +43,8 @@
     </Children>
 </ObjectType>
 
-<ObjectType SymbolicName="CAMERA:ICameraFrameType" BaseType="OpcUa:BaseInterfaceType" IsAbstract="true" SupportsEvents="true">
-    <Description> The interface of camera frames. Defines the object where frames are saved into. Definition based on ROS sensor_msgs/Image Message</Description>
+<ObjectType SymbolicName="CAMERA:ImageType" BaseType="OpcUa:BaseObjectType" IsAbstract="false" SupportsEvents="true">
+    <Description> Represents an Image Message. Defines the object where image frames are saved into. Definition based on ROS sensor_msgs/Image Message</Description>
 
     <Children>
         <Object SymbolicName="CAMERA:Header" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">
@@ -137,13 +137,7 @@
     <Description>The Camera Device</Description>
 
     <Children>
-        <Object SymbolicName="CAMERA:Image" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory" SupportsEvents="true">
-            <References>
-                <Reference IsInverse="false">
-                    <ReferenceType>OpcUa:HasInterface</ReferenceType>
-                    <TargetId>CAMERA:ICameraFrameType</TargetId>
-                </Reference>
-            </References>
+        <Object SymbolicName="CAMERA:Image" TypeDefinition="CAMERA:ImageType" ModellingRule="Mandatory" SupportsEvents="true">
         </Object>
 
         <Object SymbolicName="DEVICE:Skills" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">

@@ -39,6 +39,7 @@ add_subdirectory(include/opcua)
 add_subdirectory(composite-skills)
 add_subdirectory(semantic-mes)
 add_subdirectory(camera)
+add_subdirectory(aruco)
 
 add_executable(pnp-nodes 
     pnp-nodes.cpp

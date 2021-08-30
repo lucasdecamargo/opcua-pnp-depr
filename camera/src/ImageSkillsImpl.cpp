@@ -16,22 +16,17 @@ ImageFrameSkillImpl::ImageFrameSkillImpl(
 
 bool ImageFrameSkillImpl::start()
 {
-    logger->info("Taking picture and saving it in LastImageFrame variable.");
+    logger->info("Taking picture and saving it in Image/Data variable.");
 
     std::thread t = std::thread([this]()
     {
-        logger->info("Sleeping");
-        std::this_thread::sleep_for(std::chrono::milliseconds(250));
-        logger->info("Data");
         UA_ByteString data;
         data.data = nullptr;
         
         try
         {
-            logger->info("Device->read");
             if(this->device->read(data))
             {
-                logger->info("Device read. setting data");
                 UA_StatusCode ret = this->camera->cameraFrameParam.setData(data);
 
                 if(ret != UA_STATUSCODE_GOOD)
@@ -42,10 +37,8 @@ bool ImageFrameSkillImpl::start()
         }
         catch(const std::exception& e)
         {
-            logger->critical("When trying to read frame, exception raised: {}", e.what());
-        }
-        
-        
+            logger->critical("When trying to read frame, raised exception: {}", e.what());
+        }        
 
         this->frameFinished();
     });

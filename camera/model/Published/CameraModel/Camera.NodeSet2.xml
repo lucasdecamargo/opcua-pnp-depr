@@ -85,101 +85,101 @@
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15002</Reference>
     </References>
   </UAVariable>
-  <UAObjectType NodeId="ns=1;i=15427" BrowseName="1:ICameraFrameType" IsAbstract="true">
-    <DisplayName>ICameraFrameType</DisplayName>
-    <Description>The interface of camera frames. Defines the object where frames are saved into. Definition based on ROS sensor_msgs/Image Message</Description>
+  <UAObjectType NodeId="ns=1;i=15437" BrowseName="1:ImageType">
+    <DisplayName>ImageType</DisplayName>
+    <Description>Represents an Image Message. Defines the object where image frames are saved into. Definition based on ROS sensor_msgs/Image Message</Description>
     <References>
-      <Reference ReferenceType="HasComponent">ns=1;i=15428</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15432</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15433</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15434</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15435</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15436</Reference>
-      <Reference ReferenceType="HasSubtype" IsForward="false">i=17602</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15439</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15443</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15444</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15445</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15446</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15447</Reference>
+      <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
     </References>
   </UAObjectType>
-  <UAObject NodeId="ns=1;i=15428" BrowseName="1:Header" ParentNodeId="ns=1;i=15427">
+  <UAObject NodeId="ns=1;i=15439" BrowseName="1:Header" ParentNodeId="ns=1;i=15437">
     <DisplayName>Header</DisplayName>
     <Description>Standard metadata for higher-level stamped data types</Description>
     <References>
-      <Reference ReferenceType="HasComponent">ns=1;i=15429</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15430</Reference>
-      <Reference ReferenceType="HasComponent">ns=1;i=15431</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15440</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15441</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15442</Reference>
       <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAObject>
-  <UAVariable NodeId="ns=1;i=15429" BrowseName="1:SequenceID" ParentNodeId="ns=1;i=15428" DataType="UInt32">
+  <UAVariable NodeId="ns=1;i=15440" BrowseName="1:SequenceID" ParentNodeId="ns=1;i=15439" DataType="UInt32">
     <DisplayName>SequenceID</DisplayName>
     <Description>Consecutively increasing frame ID</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15428</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15439</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15430" BrowseName="1:Stamp" ParentNodeId="ns=1;i=15428" DataType="DateTime">
+  <UAVariable NodeId="ns=1;i=15441" BrowseName="1:Stamp" ParentNodeId="ns=1;i=15439" DataType="DateTime">
     <DisplayName>Stamp</DisplayName>
     <Description>Last frame timestamp</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15428</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15439</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15431" BrowseName="1:FrameID" ParentNodeId="ns=1;i=15428" DataType="String">
+  <UAVariable NodeId="ns=1;i=15442" BrowseName="1:FrameID" ParentNodeId="ns=1;i=15439" DataType="String">
     <DisplayName>FrameID</DisplayName>
     <Description>Coordinate frame which the camera is associated with</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15428</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15439</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15432" BrowseName="1:Data" ParentNodeId="ns=1;i=15427" DataType="i=2000">
+  <UAVariable NodeId="ns=1;i=15443" BrowseName="1:Data" ParentNodeId="ns=1;i=15437" DataType="i=2000">
     <DisplayName>Data</DisplayName>
     <Description>Last frame byte string. Encoded as configured. Size is (step * rows)</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15433" BrowseName="1:Step" ParentNodeId="ns=1;i=15427" DataType="UInt32" AccessLevel="3">
+  <UAVariable NodeId="ns=1;i=15444" BrowseName="1:Step" ParentNodeId="ns=1;i=15437" DataType="UInt32" AccessLevel="3">
     <DisplayName>Step</DisplayName>
     <Description>Frame full row length in bytes</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15434" BrowseName="1:Encoding" ParentNodeId="ns=1;i=15427" DataType="String" AccessLevel="3">
+  <UAVariable NodeId="ns=1;i=15445" BrowseName="1:Encoding" ParentNodeId="ns=1;i=15437" DataType="String" AccessLevel="3">
     <DisplayName>Encoding</DisplayName>
     <Description>Camera frame encoding type. Mind the supported encodings</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15435" BrowseName="1:Height" ParentNodeId="ns=1;i=15427" DataType="UInt32" AccessLevel="3">
+  <UAVariable NodeId="ns=1;i=15446" BrowseName="1:Height" ParentNodeId="ns=1;i=15437" DataType="UInt32" AccessLevel="3">
     <DisplayName>Height</DisplayName>
     <Description>Frame height in pixels</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAVariable>
-  <UAVariable NodeId="ns=1;i=15436" BrowseName="1:Width" ParentNodeId="ns=1;i=15427" DataType="UInt32" AccessLevel="3">
+  <UAVariable NodeId="ns=1;i=15447" BrowseName="1:Width" ParentNodeId="ns=1;i=15437" DataType="UInt32" AccessLevel="3">
     <DisplayName>Width</DisplayName>
     <Description>Frame width in pixels</Description>
     <References>
       <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
       <Reference ReferenceType="HasModellingRule">i=78</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15427</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15437</Reference>
     </References>
   </UAVariable>
   <UAObjectType NodeId="ns=1;i=15005" BrowseName="1:ImageSkillType" IsAbstract="true">
@@ -326,11 +326,91 @@
   <UAObject NodeId="ns=1;i=15438" BrowseName="1:Image" ParentNodeId="ns=1;i=15279" EventNotifier="1">
     <DisplayName>Image</DisplayName>
     <References>
-      <Reference ReferenceType="i=17603">ns=1;i=15427</Reference>
-      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15448</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15452</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15453</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15454</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15455</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15456</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=15437</Reference>
       <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15279</Reference>
     </References>
   </UAObject>
+  <UAObject NodeId="ns=1;i=15448" BrowseName="1:Header" ParentNodeId="ns=1;i=15438">
+    <DisplayName>Header</DisplayName>
+    <Description>Standard metadata for higher-level stamped data types</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15449</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15450</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15451</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=15449" BrowseName="1:SequenceID" ParentNodeId="ns=1;i=15448" DataType="UInt32">
+    <DisplayName>SequenceID</DisplayName>
+    <Description>Consecutively increasing frame ID</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15448</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15450" BrowseName="1:Stamp" ParentNodeId="ns=1;i=15448" DataType="DateTime">
+    <DisplayName>Stamp</DisplayName>
+    <Description>Last frame timestamp</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15448</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15451" BrowseName="1:FrameID" ParentNodeId="ns=1;i=15448" DataType="String">
+    <DisplayName>FrameID</DisplayName>
+    <Description>Coordinate frame which the camera is associated with</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15448</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15452" BrowseName="1:Data" ParentNodeId="ns=1;i=15438" DataType="i=2000">
+    <DisplayName>Data</DisplayName>
+    <Description>Last frame byte string. Encoded as configured. Size is (step * rows)</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15453" BrowseName="1:Step" ParentNodeId="ns=1;i=15438" DataType="UInt32" AccessLevel="3">
+    <DisplayName>Step</DisplayName>
+    <Description>Frame full row length in bytes</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15454" BrowseName="1:Encoding" ParentNodeId="ns=1;i=15438" DataType="String" AccessLevel="3">
+    <DisplayName>Encoding</DisplayName>
+    <Description>Camera frame encoding type. Mind the supported encodings</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15455" BrowseName="1:Height" ParentNodeId="ns=1;i=15438" DataType="UInt32" AccessLevel="3">
+    <DisplayName>Height</DisplayName>
+    <Description>Frame height in pixels</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15456" BrowseName="1:Width" ParentNodeId="ns=1;i=15438" DataType="UInt32" AccessLevel="3">
+    <DisplayName>Width</DisplayName>
+    <Description>Frame width in pixels</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15438</Reference>
+    </References>
+  </UAVariable>
   <UAObject NodeId="ns=1;i=15349" BrowseName="3:Skills" ParentNodeId="ns=1;i=15279">
     <DisplayName>Skills</DisplayName>
     <Description>Contains the skills of the semantic MES</Description>

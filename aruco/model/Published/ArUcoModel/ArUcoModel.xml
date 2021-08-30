@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModelDesign
+    xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:OpcUa="http://opcfoundation.org/UA/"
+    xmlns:DI="http://opcfoundation.org/UA/DI/"
+    xmlns:DEVICE="https://fortiss.org/UA/Device/"
+    xmlns:PNPTYPES="https://pnp.org/UA/PnPTypes/"
+    xmlns:ARUCO="https://pnp.org/UA/ArUco/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    TargetNamespace="https://pnp.org/UA/ArUco/"
+    TargetXmlNamespace="https://pnp.org/UA/ArUco/"
+    TargetVersion="0.1.0"
+    TargetPublicationDate="2021-08-08T00:00:00Z"
+    xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+
+<Namespaces>
+    <Namespace Name="ArUco" Prefix="ArUco" XmlNamespace="https://pnp.org/UA/ArUco/Types.xsd" XmlPrefix="ArUco">https://pnp.org/UA/ArUco/</Namespace>
+    <Namespace Name="OpcUa" Version="1.03" PublicationDate="2013-12-02T00:00:00Z" Prefix="Opc.Ua" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="OpcUa">http://opcfoundation.org/UA/</Namespace>
+    <Namespace Name="OpcUaDi" Prefix="Opc.Ua.Di" XmlNamespace="http://opcfoundation.org/UA/DI/Types.xsd" XmlPrefix="DI" FilePath="OpcUaDiModel">http://opcfoundation.org/UA/DI/</Namespace>
+    <Namespace Name="fortissDevice" Prefix="fortiss_Device" XmlNamespace="https://fortiss.org/UA/Device/Types.xsd" XmlPrefix="fortiss_Device" FilePath="../../nodeset/DeviceModel/DeviceModel">https://fortiss.org/UA/Device/</Namespace>
+    <Namespace Name="PnPTypes" Prefix="PnPTypes" XmlNamespace="https://pnp.org/UA/PnPTypes/Types.xsd" XmlPrefix="PnPTypes" FilePath="../../nodeset/PnPTypes/PnPTypes">https://pnp.org/UA/PnPTypes/</Namespace>
+</Namespaces>
+
+<!-- ### SKILLS ### -->
+<ObjectType SymbolicName="ARUCO:MarkerDetectionSkillType" BaseType="DEVICE:SkillType" IsAbstract="false">
+    <BrowseName>MarkerDetectionSkillType</BrowseName>
+    <Description>Marker detection skill</Description>
+
+    <Children>
+        <Object SymbolicName="DI:ParameterSet" ModellingRule="Mandatory">
+            <Children>
+                <Variable SymbolicName="ARUCO:InputImage" TypeDefinition="OpcUa:BaseDataVariableType" DataType="PNPTYPES:ImageDataType" ModellingRule="Mandatory">
+                    <Description>Contains the data of the input image to be processed</Description>
+                </Variable>
+
+                <Variable SymbolicName="ARUCO:OutputImage" TypeDefinition="OpcUa:BaseDataVariableType" DataType="PNPTYPES:ImageDataType" ModellingRule="Mandatory">
+                    <Description>If ImageOutput parameter is set, contains the data of the output image with drawn markers</Description>
+                </Variable>
+
+                <Variable SymbolicName="ARUCO:PoseEstimation" TypeDefinition="OpcUa:BaseDataVariableType"
+                    DataType="OpcUa:Boolean" ModellingRule="Mandatory" ValueRank="Scalar" AccessLevel="ReadWrite">
+                    <Description>If true, executes the pose estimation calculation</Description>
+                    <DefaultValue>
+                        <uax:Boolean>false</uax:Boolean>
+                    </DefaultValue>
+                </Variable>
+
+                <Variable SymbolicName="ARUCO:CameraInfo" TypeDefinition="OpcUa:BaseDataVariableType" DataType="PNPTYPES:CameraInfoDataType" ModellingRule="Mandatory"/>
+            </Children>
+        </Object>
+    </Children>
+</ObjectType>
+
+
+<!-- ### Objects ### -->
+
+<ObjectType SymbolicName="ARUCO:ArUcoComponentType" BaseType="DI:SoftwareType" IsAbstract="false">
+</ObjectType>
+
+<Object SymbolicName="ARUCO:ArUcoComponent" TypeDefinition="ARUCO:ArUcoComponentType" SupportsEvents="true">
+    <Description>Image processing software component to detect markers on image frames and estimate their pose</Description>
+
+    <Children>
+    
+        <Object SymbolicName="DEVICE:Skills" TypeDefinition="OpcUa:BaseObjectType" ModellingRule="Mandatory">
+            <Description>Contains the skills of the image processing software component</Description>
+                <Children>
+                    <Object SymbolicName="ARUCO:MarkerDetectionSkill" TypeDefinition="ARUCO:MarkerDetectionSkillType" 
+                        ModellingRule="Mandatory" SupportsEvents="true"/>
+                </Children>
+        </Object>
+
+        <Variable SymbolicName="ARUCO:MarkerArray" DataType="PNPTYPES:MarkerDataType" ValueRank="Array"/>
+
+    </Children>
+
+    <References>
+        <Reference IsInverse="true">
+            <ReferenceType>OpcUa:Organizes</ReferenceType>
+            <TargetId>DI:DeviceSet</TargetId>
+        </Reference>
+    </References>
+</Object>
+
+</ModelDesign>

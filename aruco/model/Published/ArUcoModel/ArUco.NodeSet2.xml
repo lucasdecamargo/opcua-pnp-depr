@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" LastModified="2021-08-08T00:00:00Z" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>https://pnp.org/UA/ArUco/</Uri>
+    <Uri>https://fortiss.org/UA/Device/</Uri>
+    <Uri>http://opcfoundation.org/UA/DI/</Uri>
+    <Uri>https://pnp.org/UA/PnPTypes/</Uri>
+  </NamespaceUris>
+  <Models>
+    <Model ModelUri="https://pnp.org/UA/ArUco/" Version="0.1.0" PublicationDate="2021-08-08T00:00:00Z">
+      <RequiredModel ModelUri="http://opcfoundation.org/UA/" Version="1.03" PublicationDate="2013-12-02T00:00:00Z" />
+      <RequiredModel ModelUri="http://opcfoundation.org/UA/DI/" Version="1.02" PublicationDate="2019-05-01T00:00:00Z" />
+      <RequiredModel ModelUri="https://fortiss.org/UA/Device/" Version="0.9.1" PublicationDate="2018-03-23T00:00:00Z" />
+      <RequiredModel ModelUri="https://pnp.org/UA/PnPTypes/" Version="0.1.0" PublicationDate="2021-08-08T00:00:00Z" />
+    </Model>
+  </Models>
+  <Aliases>
+    <Alias Alias="Boolean">i=1</Alias>
+    <Alias Alias="SByte">i=2</Alias>
+    <Alias Alias="Byte">i=3</Alias>
+    <Alias Alias="Int16">i=4</Alias>
+    <Alias Alias="UInt16">i=5</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="UInt32">i=7</Alias>
+    <Alias Alias="Int64">i=8</Alias>
+    <Alias Alias="UInt64">i=9</Alias>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Double">i=11</Alias>
+    <Alias Alias="DateTime">i=13</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="ByteString">i=15</Alias>
+    <Alias Alias="Guid">i=14</Alias>
+    <Alias Alias="XmlElement">i=16</Alias>
+    <Alias Alias="NodeId">i=17</Alias>
+    <Alias Alias="ExpandedNodeId">i=18</Alias>
+    <Alias Alias="QualifiedName">i=20</Alias>
+    <Alias Alias="LocalizedText">i=21</Alias>
+    <Alias Alias="StatusCode">i=19</Alias>
+    <Alias Alias="Structure">i=22</Alias>
+    <Alias Alias="Number">i=26</Alias>
+    <Alias Alias="Integer">i=27</Alias>
+    <Alias Alias="UInteger">i=28</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasProperty">i=46</Alias>
+    <Alias Alias="Organizes">i=35</Alias>
+    <Alias Alias="HasEventSource">i=36</Alias>
+    <Alias Alias="HasNotifier">i=48</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="HasModellingRule">i=37</Alias>
+    <Alias Alias="HasEncoding">i=38</Alias>
+    <Alias Alias="HasDescription">i=39</Alias>
+  </Aliases>
+  <UAObjectType NodeId="ns=1;i=15001" BrowseName="1:MarkerDetectionSkillType">
+    <DisplayName>MarkerDetectionSkillType</DisplayName>
+    <Description>Marker detection skill</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15068</Reference>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=2;i=15034</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=1;i=15068" BrowseName="3:ParameterSet" ParentNodeId="ns=1;i=15001">
+    <DisplayName>ParameterSet</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15069</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15079</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15089</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15070</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasModellingRule">i=78</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15001</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=15069" BrowseName="1:InputImage" ParentNodeId="ns=1;i=15068" DataType="ns=4;i=15003">
+    <DisplayName>InputImage</DisplayName>
+    <Description>Contains the data of the input image to be processed</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasModellingRule">i=78</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15068</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15079" BrowseName="1:OutputImage" ParentNodeId="ns=1;i=15068" DataType="ns=4;i=15003">
+    <DisplayName>OutputImage</DisplayName>
+    <Description>If ImageOutput parameter is set, contains the data of the output image with drawn markers</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasModellingRule">i=78</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15068</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15089" BrowseName="1:PoseEstimation" ParentNodeId="ns=1;i=15068" DataType="Boolean" AccessLevel="3">
+    <DisplayName>PoseEstimation</DisplayName>
+    <Description>If true, executes the pose estimation calculation</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasModellingRule">i=78</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15068</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">false</Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15070" BrowseName="1:CameraInfo" ParentNodeId="ns=1;i=15068" DataType="ns=4;i=15053">
+    <DisplayName>CameraInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasModellingRule">i=78</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15068</Reference>
+    </References>
+  </UAVariable>
+  <UAObjectType NodeId="ns=1;i=15090" BrowseName="1:ArUcoComponentType">
+    <DisplayName>ArUcoComponentType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">ns=3;i=15106</Reference>
+    </References>
+  </UAObjectType>
+  <UAObject NodeId="ns=1;i=15127" BrowseName="1:ArUcoComponent" EventNotifier="1">
+    <DisplayName>ArUcoComponent</DisplayName>
+    <Description>Image processing software component to detect markers on image frames and estimate their pose</Description>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=15150</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15152</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15154</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15164</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15206</Reference>
+      <Reference ReferenceType="Organizes" IsForward="false">ns=3;i=5001</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=15090</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=15150" BrowseName="3:Manufacturer" ParentNodeId="ns=1;i=15127" DataType="LocalizedText">
+    <DisplayName>Manufacturer</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15127</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15152" BrowseName="3:Model" ParentNodeId="ns=1;i=15127" DataType="LocalizedText">
+    <DisplayName>Model</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15127</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15154" BrowseName="3:SoftwareRevision" ParentNodeId="ns=1;i=15127" DataType="String">
+    <DisplayName>SoftwareRevision</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15127</Reference>
+    </References>
+  </UAVariable>
+  <UAObject NodeId="ns=1;i=15164" BrowseName="2:Skills" ParentNodeId="ns=1;i=15127">
+    <DisplayName>Skills</DisplayName>
+    <Description>Contains the skills of the image processing software component</Description>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15165</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15127</Reference>
+    </References>
+  </UAObject>
+  <UAObject NodeId="ns=1;i=15165" BrowseName="1:MarkerDetectionSkill" ParentNodeId="ns=1;i=15164" EventNotifier="1">
+    <DisplayName>MarkerDetectionSkill</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15166</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15171</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15179</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15180</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15181</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15196</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15197</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15198</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15199</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15200</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15201</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15202</Reference>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=15001</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15164</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=15166" BrowseName="CurrentState" ParentNodeId="ns=1;i=15165" DataType="LocalizedText">
+    <DisplayName>CurrentState</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=15167</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15169</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2760</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15167" BrowseName="Id" ParentNodeId="ns=1;i=15166" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15166</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15169" BrowseName="Number" ParentNodeId="ns=1;i=15166" DataType="UInt32">
+    <DisplayName>Number</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15166</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15171" BrowseName="LastTransition" ParentNodeId="ns=1;i=15165" DataType="LocalizedText">
+    <DisplayName>LastTransition</DisplayName>
+    <References>
+      <Reference ReferenceType="HasProperty">ns=1;i=15172</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15174</Reference>
+      <Reference ReferenceType="HasProperty">ns=1;i=15175</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=2767</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15172" BrowseName="Id" ParentNodeId="ns=1;i=15171" DataType="NodeId">
+    <DisplayName>Id</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15171</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15174" BrowseName="Number" ParentNodeId="ns=1;i=15171" DataType="UInt32">
+    <DisplayName>Number</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15171</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15175" BrowseName="TransitionTime" ParentNodeId="ns=1;i=15171" DataType="i=294">
+    <DisplayName>TransitionTime</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15171</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15179" BrowseName="Deletable" ParentNodeId="ns=1;i=15165" DataType="Boolean">
+    <DisplayName>Deletable</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15180" BrowseName="AutoDelete" ParentNodeId="ns=1;i=15165" DataType="Boolean">
+    <DisplayName>AutoDelete</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15181" BrowseName="RecycleCount" ParentNodeId="ns=1;i=15165" DataType="Int32">
+    <DisplayName>RecycleCount</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15196" BrowseName="MaxInstanceCount" ParentNodeId="ns=1;i=15165" DataType="UInt32">
+    <DisplayName>MaxInstanceCount</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
+      <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAVariable>
+  <UAMethod NodeId="ns=1;i=15197" BrowseName="Halt" ParentNodeId="ns=1;i=15165" MethodDeclarationId="ns=2;i=15098">
+    <DisplayName>Halt</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=15198" BrowseName="Reset" ParentNodeId="ns=1;i=15165" MethodDeclarationId="ns=2;i=15099">
+    <DisplayName>Reset</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=15199" BrowseName="Resume" ParentNodeId="ns=1;i=15165" MethodDeclarationId="ns=2;i=15097">
+    <DisplayName>Resume</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=15200" BrowseName="Suspend" ParentNodeId="ns=1;i=15165" MethodDeclarationId="ns=2;i=15096">
+    <DisplayName>Suspend</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAMethod>
+  <UAMethod NodeId="ns=1;i=15201" BrowseName="Start" ParentNodeId="ns=1;i=15165" MethodDeclarationId="ns=2;i=15095">
+    <DisplayName>Start</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAMethod>
+  <UAObject NodeId="ns=1;i=15202" BrowseName="3:ParameterSet" ParentNodeId="ns=1;i=15165">
+    <DisplayName>ParameterSet</DisplayName>
+    <References>
+      <Reference ReferenceType="HasComponent">ns=1;i=15203</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15204</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15205</Reference>
+      <Reference ReferenceType="HasComponent">ns=1;i=15071</Reference>
+      <Reference ReferenceType="HasTypeDefinition">i=58</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15165</Reference>
+    </References>
+  </UAObject>
+  <UAVariable NodeId="ns=1;i=15203" BrowseName="1:InputImage" ParentNodeId="ns=1;i=15202" DataType="ns=4;i=15003">
+    <DisplayName>InputImage</DisplayName>
+    <Description>Contains the data of the input image to be processed</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15202</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15204" BrowseName="1:OutputImage" ParentNodeId="ns=1;i=15202" DataType="ns=4;i=15003">
+    <DisplayName>OutputImage</DisplayName>
+    <Description>If ImageOutput parameter is set, contains the data of the output image with drawn markers</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15202</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15205" BrowseName="1:PoseEstimation" ParentNodeId="ns=1;i=15202" DataType="Boolean" AccessLevel="3">
+    <DisplayName>PoseEstimation</DisplayName>
+    <Description>If true, executes the pose estimation calculation</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15202</Reference>
+    </References>
+    <Value>
+      <Boolean xmlns="http://opcfoundation.org/UA/2008/02/Types.xsd">false</Boolean>
+    </Value>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15071" BrowseName="1:CameraInfo" ParentNodeId="ns=1;i=15202" DataType="ns=4;i=15053">
+    <DisplayName>CameraInfo</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15202</Reference>
+    </References>
+  </UAVariable>
+  <UAVariable NodeId="ns=1;i=15206" BrowseName="1:MarkerArray" ParentNodeId="ns=1;i=15127" DataType="ns=4;i=15001" ValueRank="1" ArrayDimensions="0">
+    <DisplayName>MarkerArray</DisplayName>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=15127</Reference>
+    </References>
+  </UAVariable>
+</UANodeSet>
