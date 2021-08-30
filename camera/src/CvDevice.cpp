@@ -1,5 +1,4 @@
 #include <CvDevice.h>
-#include <CameraDeviceProperties.hpp>
 
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -108,14 +107,23 @@ std::map<int,std::string> cvToStr
     {CV_8UC2, "YUV422"}
 };
 
+void toUAString(UA_String *ua_str, std::string str)
+{
+    size_t size = str.size()+1;
+    ua_str->data = new uint8_t[size];
+    ua_str->length = size;
+    strcpy((char*)ua_str->data, str.c_str());
+    ua_str->data[size-1] = '\0';
+}
+
 CvDevice::CvDevice(const std::string &filename, int apiPreference)
-    : filename(filename), apiPreference(apiPreference), index(-1)
+    : filename(filename), apiPreference(apiPreference), index(-1), enc(CameraDeviceEncoders::MONO8)
 {
 
 }
 
 CvDevice::CvDevice(int index, int apiPreference)
-    : apiPreference(apiPreference), index(index)
+    : apiPreference(apiPreference), index(index), enc(CameraDeviceEncoders::MONO8)
 {
 
 }
@@ -127,10 +135,10 @@ CvDevice::~CvDevice()
 
 bool CvDevice::retrieve(UA_ImageDataType &image, int flag)
 {
-    std::cout << "isOpened: " << isOpened() << std::endl;
+    // std::cout << "isOpened: " << isOpened() << std::endl;
     if(!isOpened()) return false;
 
-    std::cout << "CV Retrieving" << std::endl;
+    // std::cout << "CV Retrieving" << std::endl;
     cv::Mat cv_out;
     if(!this->cv::VideoCapture::retrieve(cv_out, flag))
         return false;
@@ -139,14 +147,33 @@ bool CvDevice::retrieve(UA_ImageDataType &image, int flag)
     size_t size = step * cv_out.rows;
     
     image.header.stamp = UA_DateTime_now();
-    image.encoding = UA_String_fromChars(_encStr().c_str());
     image.step = (UA_UInt32)step;
     image.height = cv_out.size().height;
     image.width = cv_out.size().width;
     
-    if(format != -1) return _retrieve_file_encoding(image.data, cv_out, format);
+    if(format != -1)
+    {
+        toUAString(&image.encoding, _encStr());
+        return _retrieve_file_encoding(image.data, cv_out, format);
+    }
 
-    std::cout << "Normal encoding" << std::endl;
+    // std::cout << "Normal encoding" << std::endl;
+
+    try
+    {
+        if(encToCv[enc] != cv_out.type())
+        {
+            cv_out.convertTo(cv_out, encToCv[enc]);
+            step = cv_out.cols * cv_out.elemSize();
+            size = step * cv_out.rows;  
+        }
+
+        toUAString(&image.encoding, encToStr[enc]);
+    }
+    catch(...)
+    {
+        toUAString(&image.encoding, _encStr());
+    }
 
     image.data.length = size;
     image.data.data = new UA_Byte[size];
@@ -174,27 +201,27 @@ bool CvDevice::_retrieve_file_encoding(UA_ByteString &image, cv::Mat &m, int fmt
 {
     if(format == -1) return false;
 
-    std::cout << "File encoding" << std::endl;
+    // std::cout << "File encoding" << std::endl;
 
     std::vector<uchar> vec;
     cv::imencode("." + encToStr[(CameraDeviceEncoders)fmt], m, vec);
 
-    std::cout << "Assigning image" << std::endl;
+    // std::cout << "Assigning image" << std::endl;
 
     image.length = vec.size();
     image.data = new UA_Byte[image.length];
     std::copy(vec.begin(), vec.end(), image.data);
 
-    std::cout << "Returning true" << std::endl;
+    // std::cout << "Returning true" << std::endl;
 
     return true;
 }
 
 bool CvDevice::read(UA_ImageDataType &image)
 {
-    std::cout << "Grabing" << std::endl;
+    // std::cout << "Grabing" << std::endl;
     grab();
-    std::cout << "Calling retrieving func" << std::endl;
+    // std::cout << "Calling retrieving func" << std::endl;
     return retrieve(image);
 }
 
@@ -225,9 +252,10 @@ bool CvDevice::set(int propId, double value)
         else
         {
             format = -1;
-            return this->cv::VideoCapture::set(propId, encToCv[(CameraDeviceEncoders)value]);
+            enc = (CameraDeviceEncoders)value;
         }
     }
+
     else
         return this->cv::VideoCapture::set(propId, value);
 

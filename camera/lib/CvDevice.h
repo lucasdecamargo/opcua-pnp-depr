@@ -2,6 +2,7 @@
 #define PNP_CVDEVICE_HPP
 
 #include <CameraDevice.h>
+#include <CameraDeviceProperties.hpp>
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 
@@ -65,6 +66,7 @@ private:
     int apiPreference;
     int index;
     int format = -1;
+    CameraDeviceEncoders enc;
 
     bool _retrieve_file_encoding(UA_ByteString &image, cv::Mat &m, int fmt);
     std::string _encStr();

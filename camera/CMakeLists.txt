@@ -71,25 +71,24 @@ generate_certificate(
         OUTPUT_DIR "${CMAKE_CURRENT_LIST_DIR}/certs/client"
 )
 
-add_executable(${PROJECT_NAME}
-    ${UA_NODESET_DI_SOURCES}
-    ${UA_TYPES_DI_SOURCES}
-    ${UA_NODESET_DEVICE_MODEL_SOURCES}
-    ${UA_TYPES_DEVICE_MODEL_SOURCES}
-    ${UA_NODESET_PNP_TYPES_SOURCES}
-    ${UA_TYPES_PNP_TYPES_SOURCES}
-    ${UA_NODESET_CAMERA_SOURCES}
-    ${UA_TYPES_CAMERA_SOURCES}
-    src/main.cpp
-    src/Camera.cpp
-    src/CameraDevice.cpp
-    src/CameraFrameParam_deprecated.cpp
-    src/CameraDevice.cpp
-    src/CvDevice.cpp
-    src/ImageSkillsImpl.cpp
+add_library(${PROJECT_NAME}-lib
+        ${UA_NODESET_DI_SOURCES}
+        ${UA_TYPES_DI_SOURCES}
+        ${UA_NODESET_DEVICE_MODEL_SOURCES}
+        ${UA_TYPES_DEVICE_MODEL_SOURCES}
+        ${UA_NODESET_PNP_TYPES_SOURCES}
+        ${UA_TYPES_PNP_TYPES_SOURCES}
+        ${UA_NODESET_CAMERA_SOURCES}
+        ${UA_TYPES_CAMERA_SOURCES}
+        src/Camera.cpp
+        src/CameraDevice.cpp
+        src/CameraFrameParam_deprecated.cpp
+        src/CameraDevice.cpp
+        src/CvDevice.cpp
+        src/ImageSkillsImpl.cpp
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+include_directories(
     lib
     ${GENERATE_OUTPUT_DIR}
     $<TARGET_PROPERTY:open62541::open62541,INTERFACE_INCLUDE_DIRECTORIES>
@@ -98,7 +97,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ${OpenCV_INCLUDE_DIRS}
 )
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}-lib
     open62541::open62541
     CLI11::CLI11
     config++
@@ -106,11 +105,25 @@ target_link_libraries(${PROJECT_NAME}
     ${OpenCV_LIBS}
 )
 
-add_dependencies(${PROJECT_NAME}
+add_dependencies(${PROJECT_NAME}-lib
     camera-ns-camera
     camera-certs-server
     camera-certs-client
 )
+
+add_executable(${PROJECT_NAME}
+        src/main.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}
+        ${PROJECT_NAME}-lib
+)
+
+add_dependencies(${PROJECT_NAME}
+        ${PROJECT_NAME}-lib
+)
+
+add_subdirectory(tests)
 
 cmake_host_system_information(RESULT HOSTNAME QUERY HOSTNAME)
 file(GENERATE OUTPUT "${PROJECT_BINARY_DIR}/run.sh" INPUT "${PROJECT_BINARY_DIR}/.run_tmp.sh")
