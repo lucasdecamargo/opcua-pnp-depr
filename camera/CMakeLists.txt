@@ -36,6 +36,18 @@ ua_generate_nodeset_and_datatypes(
 )
 
 ua_generate_nodeset_and_datatypes(
+        NAME "pnp_types"
+        TARGET_PREFIX "${PROJECT_NAME}"
+        FILE_CSV "${CMAKE_CURRENT_LIST_DIR}/../nodeset/PnPTypes/Published/PnPTypes/PnPTypes.csv"
+        FILE_BSD "${CMAKE_CURRENT_LIST_DIR}/../nodeset/PnPTypes/Published/PnPTypes/PnPTypes.Types.bsd"
+        OUTPUT_DIR "${GENERATE_OUTPUT_DIR}"
+        NAMESPACE_MAP "4:https://pnp.org/UA/PnPTypes/"
+        FILE_NS "${CMAKE_CURRENT_LIST_DIR}/../nodeset/PnPTypes/Published/PnPTypes/PnPTypes.NodeSet2.xml"
+        DEPENDS "device_model" "di"
+        INTERNAL
+)
+
+ua_generate_nodeset_and_datatypes(
         NAME "camera"
         TARGET_PREFIX "${PROJECT_NAME}"
         FILE_CSV "${CMAKE_CURRENT_LIST_DIR}/model/Published/CameraModel/CameraModel.csv"
@@ -43,7 +55,7 @@ ua_generate_nodeset_and_datatypes(
         OUTPUT_DIR "${GENERATE_OUTPUT_DIR}"
         NAMESPACE_MAP "5:https://pnp.org/UA/Camera/"
         FILE_NS "${CMAKE_CURRENT_LIST_DIR}/model/Published/CameraModel/Camera.NodeSet2.xml"
-        DEPENDS "device_model"
+        DEPENDS "pnp_types"
         INTERNAL
 )
 
@@ -64,12 +76,14 @@ add_executable(${PROJECT_NAME}
     ${UA_TYPES_DI_SOURCES}
     ${UA_NODESET_DEVICE_MODEL_SOURCES}
     ${UA_TYPES_DEVICE_MODEL_SOURCES}
+    ${UA_NODESET_PNP_TYPES_SOURCES}
+    ${UA_TYPES_PNP_TYPES_SOURCES}
     ${UA_NODESET_CAMERA_SOURCES}
     ${UA_TYPES_CAMERA_SOURCES}
     src/main.cpp
     src/Camera.cpp
     src/CameraDevice.cpp
-    src/CameraFrameParam.cpp
+    src/CameraFrameParam_deprecated.cpp
     src/CameraDevice.cpp
     src/CvDevice.cpp
     src/ImageSkillsImpl.cpp

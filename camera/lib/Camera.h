@@ -6,7 +6,6 @@
 
 #include <ImageFrameSkillImpl.h>
 #include <CameraDevice.h>
-#include <CameraFrameParam.h>
 
 class Camera
 {
@@ -37,8 +36,6 @@ private:
     ImageFrameSkillImpl *imageFrameSkillImpl{};
     std::unique_ptr<pnp::opcua::skill::camera::ImageFrameSkill> imageFrameSkill;
 
-public:
-    CameraFrameParam cameraFrameParam;
 };
 
 #endif

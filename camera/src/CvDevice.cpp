@@ -5,6 +5,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 #include <open62541/util.h>
+#include <types_pnp_types_generated_handling.h>
 
 #include <map>
 
@@ -59,12 +60,53 @@ std::map<int,CameraDeviceEncoders> cvToEnc
 
 std::map<CameraDeviceEncoders, std::string> encToStr
 {
+    {CameraDeviceEncoders::BGR8, "BGR8"},
+    {CameraDeviceEncoders::MONO8, "MONO8"},
+    {CameraDeviceEncoders::RGB8, "RGB8"},
+    {CameraDeviceEncoders::MONO16, "MONO16"},
+    {CameraDeviceEncoders::BGR16, "BGR16"},
+    {CameraDeviceEncoders::RGB16, "RGB16"},
+    {CameraDeviceEncoders::BGRA8, "BGRA8"},
+    {CameraDeviceEncoders::RGBA8, "RGBA8"},
+    {CameraDeviceEncoders::BGRA16, "BGRA16"},
+    {CameraDeviceEncoders::RGBA16, "RGBA16"},
+    {CameraDeviceEncoders::BAYER_RGGB8, "BAYER_RGGB8"},
+    {CameraDeviceEncoders::BAYER_BGGR8, "BAYER_BGGR8"},
+    {CameraDeviceEncoders::BAYER_GBRG8, "BAYER_GBRG8"},
+    {CameraDeviceEncoders::BAYER_GRBG8, "BAYER_GRBG8"},
+    {CameraDeviceEncoders::BAYER_RGGB16, "BAYER_RGGB16"},
+    {CameraDeviceEncoders::BAYER_BGGR16, "BAYER_BGGR16"},
+    {CameraDeviceEncoders::BAYER_GBRG16, "BAYER_GBRG16"},
+    {CameraDeviceEncoders::BAYER_GRBG16, "BAYER_GRBG16"},
+    {CameraDeviceEncoders::YUV422, "YUV422"},
     {CameraDeviceEncoders::BMP, "BMP"},
     {CameraDeviceEncoders::JPG, "JPG"},
     {CameraDeviceEncoders::PNG, "PNG"},
     {CameraDeviceEncoders::GIF, "GIF"}
 };
 
+std::map<int,std::string> cvToStr
+{
+    {CV_8UC3, "BGR8"},
+    {CV_8UC1, "MONO8"},
+    {CV_8UC3, "RGB8"},
+    {CV_16UC1, "MONO16"},
+    {CV_16UC3, "BGR16"},
+    {CV_16UC3, "RGB16"},
+    {CV_8UC4, "BGRA8"},
+    {CV_8UC4, "RGBA8"},
+    {CV_16UC4, "BGRA16"},
+    {CV_16UC4, "RGBA16"},
+    {CV_8UC1, "BAYER_RGGB8"},
+    {CV_8UC1, "BAYER_BGGR8"},
+    {CV_8UC1, "BAYER_GBRG8"},
+    {CV_8UC1, "BAYER_GRBG8"},
+    {CV_16UC1, "BAYER_RGGB16"},
+    {CV_16UC1, "BAYER_BGGR16"},
+    {CV_16UC1, "BAYER_GBRG16"},
+    {CV_16UC1, "BAYER_GRBG16"},
+    {CV_8UC2, "YUV422"}
+};
 
 CvDevice::CvDevice(const std::string &filename, int apiPreference)
     : filename(filename), apiPreference(apiPreference), index(-1)
@@ -83,7 +125,7 @@ CvDevice::~CvDevice()
 
 }
 
-bool CvDevice::retrieve(UA_ByteString &image, int flag)
+bool CvDevice::retrieve(UA_ImageDataType &image, int flag)
 {
     std::cout << "isOpened: " << isOpened() << std::endl;
     if(!isOpened()) return false;
@@ -93,25 +135,29 @@ bool CvDevice::retrieve(UA_ByteString &image, int flag)
     if(!this->cv::VideoCapture::retrieve(cv_out, flag))
         return false;
 
-    
-    if(format != -1) return _retrieve_file_encoding(image, cv_out, format);
-
-    std::cout << "Normal encoding" << std::endl;
     size_t step = cv_out.cols * cv_out.elemSize();
     size_t size = step * cv_out.rows;
+    
+    image.header.stamp = UA_DateTime_now();
+    image.encoding = UA_String_fromChars(_encStr().c_str());
+    image.step = (UA_UInt32)step;
+    image.height = cv_out.size().height;
+    image.width = cv_out.size().width;
+    
+    if(format != -1) return _retrieve_file_encoding(image.data, cv_out, format);
 
+    std::cout << "Normal encoding" << std::endl;
 
-    if(image.data != nullptr) delete[] image.data;
-    image.length = size;
-    image.data = new UA_Byte[size];
+    image.data.length = size;
+    image.data.data = new UA_Byte[size];
 
     if(cv_out.isContinuous()) 
-        memcpy(image.data, cv_out.data, size);
+        memcpy(image.data.data, cv_out.data, size);
     
     else
     {
         // Copy row by row
-        uchar* data_ptr = (uchar*)(&image.data[0]);
+        uchar* data_ptr = (uchar*)(&image.data.data[0]);
         uchar* cv_ptr = cv_out.data;
         for(int i = 0; i < cv_out.rows; i++)
         {
@@ -135,7 +181,6 @@ bool CvDevice::_retrieve_file_encoding(UA_ByteString &image, cv::Mat &m, int fmt
 
     std::cout << "Assigning image" << std::endl;
 
-    if(image.data != nullptr) delete[] image.data;
     image.length = vec.size();
     image.data = new UA_Byte[image.length];
     std::copy(vec.begin(), vec.end(), image.data);
@@ -145,7 +190,7 @@ bool CvDevice::_retrieve_file_encoding(UA_ByteString &image, cv::Mat &m, int fmt
     return true;
 }
 
-bool CvDevice::read(UA_ByteString &image)
+bool CvDevice::read(UA_ImageDataType &image)
 {
     std::cout << "Grabing" << std::endl;
     grab();
@@ -203,4 +248,12 @@ bool CvDevice::isOpened() const
 bool CvDevice::grab()
 {
     return this->cv::VideoCapture::grab();
+}
+
+std::string CvDevice::_encStr()
+{
+    if(format != -1) 
+        return encToStr[(CameraDeviceEncoders)format];
+    else
+        return cvToStr[(int)get(cv::CAP_PROP_FORMAT)];
 }

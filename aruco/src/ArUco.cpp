@@ -14,6 +14,9 @@
 #include <pnp_types_nodeids.h>
 #include <aruco_nodeids.h>
 
+#include <types_pnp_types_generated.h>
+#include <types_pnp_types_generated_handling.h>
+
 #define NAMESPACE_URI_CAMERA "https://pnp.org/UA/ArUco/"
 
 ArUco::ArUco(

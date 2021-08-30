@@ -2,6 +2,7 @@
 #define PNP_CAMERADEVICE_H
 
 #include <open62541/types.h>
+#include <types_pnp_types_generated.h>
 
 class CameraDevice
 {
@@ -22,12 +23,13 @@ public:
      * Decodes and returns the grabbed video frame.
      * grab() must be called first.
      */
-    virtual bool retrieve(UA_ByteString &image, int flag = 0) = 0;
+    virtual bool retrieve(UA_ImageDataType &image, int flag = 0) = 0;
 
     /**
-     * Grabs, decodes and returns the next video frame.
+     * Grabs, decodes and returns the next video frame. 
+     * Creates Image Message
      */ 
-    virtual bool read(UA_ByteString &image);
+    virtual bool read(UA_ImageDataType &image);
 
     /**
      * Opens the capture device

@@ -25,9 +25,18 @@ public:
 
     virtual ~CvDevice();
 
-    bool retrieve(UA_ByteString &image, int flag = 0);
-    bool read(UA_ByteString &image);
-    bool open();
+    bool retrieve(UA_ImageDataType &image, int flag = 0);
+
+    /**
+     * Grabs, decodes and returns the next video frame. 
+     * Creates Image Message
+     */ 
+    virtual bool read(UA_ImageDataType &image);
+
+    /**
+     * Opens the capture device
+     */ 
+    virtual bool open();
     /**
      * Closes the capturing device
      */ 
@@ -58,6 +67,7 @@ private:
     int format = -1;
 
     bool _retrieve_file_encoding(UA_ByteString &image, cv::Mat &m, int fmt);
+    std::string _encStr();
 };
 
 #endif

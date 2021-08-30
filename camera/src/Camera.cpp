@@ -6,11 +6,15 @@
 
 #include <namespace_di_generated.h>
 #include <namespace_device_model_generated.h>
+#include <namespace_pnp_types_generated.h>
 #include <namespace_camera_generated.h>
 
 #include <device_model_nodeids.h>
 #include <di_nodeids.h>
 #include <camera_nodeids.h>
+
+#include <types_pnp_types_generated.h>
+#include <types_pnp_types_generated_handling.h>
 
 #define NAMESPACE_URI_CAMERA "https://pnp.org/UA/Camera/"
 
@@ -25,8 +29,7 @@ Camera::Camera(
     device(cameraDevice),
     logger(std::move(_loggerApp)),
     loggerOpcua(std::move(_loggerOpcua)),
-    server(server),
-    cameraFrameParam(logger,loggerOpcua, server)
+    server(server)
 {
     if (!this->createNodesFromNodeset()) {
         throw std::runtime_error("Can not initialize Camera nodeset");
@@ -45,6 +48,7 @@ Camera::~Camera()
 UA_StatusCode Camera::initSkills()
 {
     UA_NodeId imageFrameSkillId;
+    UA_NodeId imageNodeId;
     {
         LockedServer ls = server->getLocked();
 
@@ -53,9 +57,15 @@ UA_StatusCode Camera::initSkills()
             pnp::opcua::UA_Server_getNamespaceIdByName(ls.get(), NAMESPACE_URI_CAMERA),
                 UA_CAMERAID_CAMERADEVICE_SKILLS_IMAGEFRAMESKILL
         );
+
+        imageNodeId = UA_NODEID_NUMERIC
+        (
+            pnp::opcua::UA_Server_getNamespaceIdByName(ls.get(), NAMESPACE_URI_CAMERA),
+                UA_CAMERAID_CAMERADEVICE_IMAGE
+        );
     }
 
-    imageFrameSkillImpl = new ImageFrameSkillImpl(logger, device, this);
+    imageFrameSkillImpl = new ImageFrameSkillImpl(server, logger, device, imageNodeId);
 
     imageFrameSkill = std::make_unique<pnp::opcua::skill::camera::ImageFrameSkill>
                         (server, logger, imageFrameSkillId, "ImageFrameSkill");
@@ -81,13 +91,19 @@ bool Camera::createNodesFromNodeset()
         return false;
     }
 
+    if(namespace_pnp_types_generated(ls.get()) != UA_STATUSCODE_GOOD)
+    {
+        logger->error("Adding the PnPTypes namespace failed. Please check previous error output.");
+        return false;
+    }
+
     if(namespace_camera_generated(ls.get()) != UA_STATUSCODE_GOOD)
     {
         logger->error("Adding the Camera namespace failed. Please check previous error output.");
         return false;
     }
 
-    cameraFrameParam.init();
+    // cameraFrameParam.init();
 
     return true;
 }

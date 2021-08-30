@@ -35,6 +35,7 @@ using System.Runtime.Serialization;
 using Opc.Ua;
 using Opc.Ua.Di;
 using fortiss_Device;
+using PnPTypes;
 
 namespace Camera
 {

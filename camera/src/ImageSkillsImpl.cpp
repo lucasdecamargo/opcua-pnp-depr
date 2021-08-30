@@ -1,15 +1,18 @@
 #include <ImageFrameSkillImpl.h>
-#include <Camera.h>
+#include <types_pnp_types_generated.h>
+#include <types_pnp_types_generated_handling.h>
 
 ImageFrameSkillImpl::ImageFrameSkillImpl(
+    const std::shared_ptr<pnp::opcua::OpcUaServer>& server,
     const std::shared_ptr<spdlog::logger>& logger,
     const std::shared_ptr<CameraDevice>& cameraDevice,
-    Camera* camera
+    UA_NodeId& imageNodeId
 )   
     : pnp::opcua::skill::camera::ImageFrameSkillImpl(),
+        server(server),
         logger(logger),
         device(cameraDevice),
-        camera(camera)
+        imageNodeId(imageNodeId)
 {
     // ...
 }
@@ -20,20 +23,26 @@ bool ImageFrameSkillImpl::start()
 
     std::thread t = std::thread([this]()
     {
-        UA_ByteString data;
-        data.data = nullptr;
+        UA_ImageDataType image;
         
         try
         {
-            if(this->device->read(data))
+            if(this->device->read(image))
             {
-                UA_StatusCode ret = this->camera->cameraFrameParam.setData(data);
+
+                UA_Variant v;
+                UA_Variant_init(&v);
+                UA_Variant_setScalar(&v, &image, &UA_TYPES_PNP_TYPES[UA_TYPES_PNP_TYPES_IMAGEDATATYPE]);
+
+                LockedServer ls = this->server->getLocked();
+                UA_StatusCode ret = UA_Server_writeValue(ls.get(), this->imageNodeId, v);
 
                 if(ret != UA_STATUSCODE_GOOD)
                     logger->error("Could not set ImageData param. Err: {}", UA_StatusCode_name(ret));
             }
 
-            if(data.data != nullptr) delete[] data.data;
+            if(image.data.data != nullptr) delete[] image.data.data;
+            if(image.encoding.data != nullptr) delete[] image.encoding.data;
         }
         catch(const std::exception& e)
         {

@@ -16,7 +16,7 @@ bool CameraDevice::grab()
     throw std::logic_error("Not implemented");
 }
 
-bool CameraDevice::read(UA_ByteString &image)
+bool CameraDevice::read(UA_ImageDataType &image)
 {
     throw std::logic_error("Not implemented");
 }

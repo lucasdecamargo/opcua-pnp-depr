@@ -1,6 +1,7 @@
 <xs:schema
   xmlns:DI="http://opcfoundation.org/UA/DI/Types.xsd"
   xmlns:fortiss_Device="https://fortiss.org/UA/Device/Types.xsd"
+  xmlns:PnPTypes="https://pnp.org/UA/PnPTypes/Types.xsd"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
   xmlns:ua="http://opcfoundation.org/UA/2008/02/Types.xsd"
   xmlns:tns="https://pnp.org/UA/Camera/Types.xsd"
@@ -10,5 +11,6 @@
   <xs:import namespace="http://opcfoundation.org/UA/2008/02/Types.xsd" />
   <xs:import namespace="http://opcfoundation.org/UA/DI/Types.xsd" />
   <xs:import namespace="https://fortiss.org/UA/Device/Types.xsd" />
+  <xs:import namespace="https://pnp.org/UA/PnPTypes/Types.xsd" />
 
 </xs:schema>
